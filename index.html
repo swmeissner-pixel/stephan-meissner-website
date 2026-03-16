@@ -1,0 +1,1401 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Stephan Meissner — Tape Art</title>
+    <meta name="description" content="Stephan Meissner – Visual Artist, Tape Art Pioneer, Founder of Tape That Collective & Tape Art Academy. Berlin-based artist working with tape and adhesive materials.">
+    <meta property="og:title" content="Stephan Meissner — Tape Art">
+    <meta property="og:description" content="Visual Artist & Tape Art Pioneer. Berlin-based, working worldwide.">
+    <meta property="og:type" content="website">
+    <meta property="og:image" content="images/hero/1907_LB_TT_Taiwan_artworks-40.jpg">
+    <meta property="og:url" content="https://www.stephan-meissner.com/">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Stephan Meissner — Tape Art">
+    <meta name="twitter:description" content="Visual Artist & Tape Art Pioneer. Berlin-based, working worldwide.">
+    <meta name="twitter:image" content="images/hero/1907_LB_TT_Taiwan_artworks-40.jpg">
+    <meta name="keywords" content="Stephan Meissner, Tape Art, Visual Artist, Berlin, Tape That Collective, Tape Art Convention, Tape Art Academy, contemporary art, installation art, street art">
+    <meta name="author" content="Stephan Meissner">
+    <meta name="robots" content="index, follow">
+    <link rel="canonical" href="https://www.stephan-meissner.com/">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700&family=DM+Sans:ital,wght@0,300;0,400;0,500;1,400&display=swap" rel="stylesheet">
+    <style>
+        *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+
+        :root {
+            --white: #ffffff;
+            --off-white: #fafafa;
+            --gray-100: #f2f2f2;
+            --gray-200: #e0e0e0;
+            --gray-300: #cccccc;
+            --gray-400: #999999;
+            --gray-500: #777777;
+            --gray-600: #555555;
+            --gray-700: #333333;
+            --gray-800: #222222;
+            --gray-900: #111111;
+            --black: #0a0a0a;
+            --font-heading: 'Outfit', sans-serif;
+            --font-body: 'DM Sans', sans-serif;
+        }
+
+        html { scroll-behavior: smooth; overflow-x: hidden; }
+
+        body {
+            background: var(--white);
+            color: var(--gray-800);
+            font-family: var(--font-body);
+            overflow-x: hidden;
+            -webkit-font-smoothing: antialiased;
+        }
+
+        ::selection { background: var(--gray-200); color: var(--black); }
+        a { color: inherit; text-decoration: none; }
+        img { display: block; max-width: 100%; }
+        button { font-family: var(--font-body); }
+
+        /* ========== NAVIGATION ========== */
+        .nav {
+            position: fixed;
+            top: 0; left: 0; right: 0;
+            z-index: 100;
+            padding: 2rem 3rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            transition: all 0.4s ease;
+        }
+
+        .nav.over-hero { color: var(--white); }
+        .nav.over-hero .nav-logo { opacity: 0; }
+        .nav.over-hero .menu-toggle span { background: var(--white); }
+        .nav.over-hero .lang-toggle { border-color: rgba(255,255,255,0.3); color: var(--white); }
+
+        .nav.scrolled {
+            padding: 1rem 3rem;
+            background: rgba(255,255,255,0.95);
+            backdrop-filter: blur(20px);
+            border-bottom: 1px solid var(--gray-100);
+            color: var(--gray-800);
+        }
+
+        .nav.scrolled .menu-toggle span { background: var(--gray-800); }
+        .nav.scrolled .lang-toggle { border-color: var(--gray-300); color: var(--gray-700); }
+
+        .nav-logo {
+            font-family: var(--font-heading);
+            font-weight: 500;
+            font-size: 0.85rem;
+            letter-spacing: 0.2em;
+            text-transform: uppercase;
+            transition: opacity 0.4s ease;
+        }
+
+        .nav-right { display: flex; align-items: center; gap: 3rem; }
+
+        .nav-links {
+            display: flex;
+            gap: 2.5rem;
+            list-style: none;
+        }
+
+        .nav-links a {
+            font-family: var(--font-heading);
+            font-size: 0.75rem;
+            letter-spacing: 0.15em;
+            text-transform: uppercase;
+            font-weight: 400;
+            position: relative;
+        }
+
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            bottom: -4px; left: 0;
+            width: 0; height: 1px;
+            background: currentColor;
+            transition: width 0.4s cubic-bezier(0.25, 1, 0.5, 1);
+        }
+
+        .nav-links a:hover::after { width: 100%; }
+
+        .lang-toggle {
+            background: none;
+            border: 1px solid var(--gray-300);
+            color: var(--gray-700);
+            padding: 0.35rem 0.9rem;
+            font-family: var(--font-heading);
+            font-size: 0.7rem;
+            letter-spacing: 0.15em;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .lang-toggle:hover { background: var(--gray-900); color: var(--white); border-color: var(--gray-900); }
+
+        .menu-toggle {
+            display: none;
+            background: none; border: none; cursor: pointer;
+            width: 28px; height: 18px;
+            position: relative; z-index: 101;
+        }
+
+        .menu-toggle span {
+            display: block; width: 100%; height: 1px;
+            background: var(--gray-800);
+            position: absolute; transition: all 0.3s ease;
+        }
+
+        .menu-toggle span:nth-child(1) { top: 0; }
+        .menu-toggle span:nth-child(2) { top: 50%; }
+        .menu-toggle span:nth-child(3) { bottom: 0; }
+
+        .menu-toggle.active span:nth-child(1) { top: 50%; transform: rotate(45deg); }
+        .menu-toggle.active span:nth-child(2) { opacity: 0; }
+        .menu-toggle.active span:nth-child(3) { bottom: 50%; transform: rotate(-45deg); }
+
+        /* ========== HERO ========== */
+        .hero {
+            position: relative;
+            width: 100%; height: 100vh;
+            overflow: hidden;
+            background: var(--black);
+        }
+
+        .hero-slides {
+            position: absolute; inset: 0;
+        }
+
+        .hero-slide {
+            position: absolute; inset: 0;
+            opacity: 0;
+            transition: none;
+        }
+
+        .hero-slide.active { opacity: 1; }
+
+        .hero-slide img {
+            width: 100%; height: 100%;
+            object-fit: cover;
+        }
+
+        .hero-overlay {
+            position: absolute; inset: 0;
+            background: linear-gradient(to bottom, transparent 0%, transparent 60%, rgba(0,0,0,0.3) 100%);
+            z-index: 1;
+        }
+
+        .hero-content {
+            position: absolute;
+            bottom: 0; left: 0; right: 0;
+            z-index: 2;
+            padding: 0 3rem 4rem;
+        }
+
+        .hero-name {
+            font-family: var(--font-heading);
+            font-size: clamp(1.4rem, 3vw, 2.2rem);
+            font-weight: 400;
+            letter-spacing: 0.35em;
+            text-transform: uppercase;
+            color: var(--white);
+            margin-bottom: 1rem;
+            opacity: 0;
+            animation: fadeSlideUp 1s cubic-bezier(0.16, 1, 0.3, 1) 0.3s forwards;
+        }
+
+        .hero-tagline {
+            font-family: var(--font-body);
+            font-size: clamp(0.75rem, 1.2vw, 0.9rem);
+            font-weight: 300;
+            letter-spacing: 0.25em;
+            text-transform: uppercase;
+            color: rgba(255,255,255,0.6);
+            opacity: 0;
+            animation: fadeSlideUp 1s cubic-bezier(0.16, 1, 0.3, 1) 0.5s forwards;
+        }
+
+
+
+        @keyframes fadeSlideUp {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        @keyframes fadeIn { to { opacity: 1; } }
+
+        /* ========== SECTION BASE ========== */
+        .section-label {
+            font-family: var(--font-heading);
+            font-size: 0.65rem;
+            letter-spacing: 0.4em;
+            text-transform: uppercase;
+            color: var(--gray-500);
+            margin-bottom: 1rem;
+            display: flex;
+            align-items: center;
+            gap: 1.5rem;
+        }
+
+        .section-label::before {
+            content: '';
+            width: 30px; height: 1px;
+            background: var(--gray-300);
+        }
+
+        .section-title {
+            font-family: var(--font-heading);
+            font-size: clamp(1.4rem, 3vw, 2.2rem);
+            font-weight: 400;
+            letter-spacing: 0.35em;
+            text-transform: uppercase;
+            line-height: 1.2;
+            margin-bottom: 3rem;
+            color: var(--gray-900);
+            text-align: center;
+        }
+
+        /* ========== PORTFOLIO ========== */
+        .portfolio {
+            position: relative;
+            padding: 5rem 3rem;
+        }
+
+        .portfolio-header { margin-bottom: 3rem; }
+
+        .portfolio-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 25px;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .portfolio-item {
+            position: relative;
+            overflow: hidden;
+            cursor: pointer;
+            background: var(--gray-100);
+        }
+
+        /* Left column: align to the right (toward center) */
+        .portfolio-grid .portfolio-item:nth-child(odd) { justify-self: end; }
+        /* Right column: align to the left (toward center) */
+        .portfolio-grid .portfolio-item:nth-child(even) { justify-self: start; }
+
+        /* Width variations for organic layout */
+        .portfolio-item.w-100 { width: 100%; }
+        .portfolio-item.w-95 { width: 95%; }
+        .portfolio-item.w-90 { width: 90%; }
+        .portfolio-item.w-85 { width: 85%; }
+        .portfolio-item.w-80 { width: 80%; }
+        .portfolio-item.w-75 { width: 75%; }
+        .portfolio-item.w-70 { width: 70%; }
+        .portfolio-item.w-65 { width: 65%; }
+
+        .portfolio-item img {
+            width: 100%; height: 100%;
+            object-fit: cover;
+            transition: transform 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+
+        /* Individual aspect ratios for organic layout */
+        .portfolio-item.ar-landscape img { aspect-ratio: 16/10; }
+        .portfolio-item.ar-square img { aspect-ratio: 1/1; }
+        .portfolio-item.ar-portrait img { aspect-ratio: 3/4; }
+
+        .portfolio-item:hover img { transform: scale(1.05); }
+
+        .portfolio-item .overlay {
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(to top, rgba(0,0,0,0.75) 0%, transparent 50%);
+            opacity: 0;
+            transition: opacity 0.5s ease;
+            display: flex;
+            align-items: flex-end;
+            padding: 1.5rem;
+        }
+
+        .portfolio-item:hover .overlay { opacity: 1; }
+
+        .overlay-text h3 {
+            font-family: var(--font-heading);
+            font-size: 0.85rem;
+            font-weight: 500;
+            color: #fff;
+            margin-bottom: 0.2rem;
+        }
+
+        .overlay-text p {
+            font-size: 0.65rem;
+            color: rgba(255,255,255,0.6);
+        }
+
+        /* Show More */
+        .show-more-wrap {
+            text-align: center;
+            padding: 2rem 0;
+        }
+
+        .show-more-wrap button {
+            background: none;
+            border: 1px solid var(--gray-300);
+            color: var(--gray-600);
+            padding: 0.8rem 2.5rem;
+            font-family: var(--font-heading);
+            font-size: 0.75rem;
+            letter-spacing: 0.15em;
+            text-transform: uppercase;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .show-more-wrap button:hover {
+            background: var(--gray-900);
+            color: var(--white);
+            border-color: var(--gray-900);
+        }
+
+        /* Portfolio More Grid */
+        .portfolio-more-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 25px;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .portfolio-more-grid .portfolio-item:nth-child(odd) { justify-self: end; }
+        .portfolio-more-grid .portfolio-item:nth-child(even) { justify-self: start; }
+
+        /* Hover Mosaic */
+        .hover-mosaic {
+            position: absolute;
+            inset: 0;
+            z-index: 1;
+            opacity: 0;
+            transition: opacity 0.4s ease;
+            display: grid;
+            gap: 3px;
+        }
+
+        .portfolio-item:hover .hover-mosaic { opacity: 1; }
+        .portfolio-item.has-mosaic:hover > img { opacity: 0; transition: opacity 0.4s ease; }
+
+        .hover-mosaic img {
+            width: 100%; height: 100%;
+            object-fit: cover;
+            aspect-ratio: auto;
+        }
+
+        .mosaic-a {
+            grid-template-columns: 1fr 1fr;
+            grid-template-rows: 1fr 1fr;
+        }
+        .mosaic-a img:first-child { grid-row: 1 / -1; }
+
+        .mosaic-b {
+            grid-template-columns: 1fr 1fr 1fr;
+            grid-template-rows: 1fr;
+        }
+
+        .mosaic-c {
+            grid-template-columns: 1fr;
+            grid-template-rows: 1fr 1fr 1fr;
+        }
+
+        /* ========== ABOUT + TIMELINE/CONTACT (combined) ========== */
+        .about-section {
+            position: relative;
+            padding: 5rem 3rem 4rem;
+            background: var(--off-white);
+        }
+
+        .about-inner {
+            max-width: 1300px;
+            margin: 0 auto;
+        }
+
+        /* Bio area */
+        .about-bio {
+            display: grid;
+            grid-template-columns: 0.8fr 1.4fr 1fr;
+            gap: 3rem;
+            margin-bottom: 4rem;
+            align-items: stretch;
+        }
+
+        .about-image {
+            align-self: stretch;
+            overflow: hidden;
+        }
+        .about-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            object-position: center 40%;
+        }
+
+        .about-text {
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+        }
+
+        .about-timeline-col {
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            align-self: stretch;
+        }
+
+        .about-text p {
+            font-size: 1rem;
+            line-height: 1.85;
+            color: var(--gray-600);
+            margin-bottom: 1rem;
+            font-weight: 300;
+        }
+
+        /* Divider */
+        .section-divider {
+            width: 100%;
+            height: 1px;
+            background: var(--gray-200);
+            margin: 3rem 0;
+        }
+
+        /* Timeline */
+        .timeline {
+            position: relative;
+            padding-left: 2.5rem;
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+        }
+
+        .timeline::before {
+            content: '';
+            position: absolute;
+            left: 0; top: 0; bottom: 0;
+            width: 1px;
+            background: var(--gray-200);
+        }
+
+        .timeline-item {
+            position: relative;
+            padding-bottom: 0;
+        }
+
+        .timeline-item::before {
+            content: '';
+            position: absolute;
+            left: -2.5rem; top: 0.35rem;
+            width: 5px; height: 5px;
+            border-radius: 50%;
+            background: var(--gray-300);
+            transform: translateX(-2px);
+        }
+
+        .timeline-year {
+            font-family: var(--font-heading);
+            font-size: 0.65rem;
+            letter-spacing: 0.2em;
+            color: var(--gray-400);
+            margin-bottom: 0.3rem;
+        }
+
+        .timeline-item h3 {
+            font-family: var(--font-heading);
+            font-size: 0.95rem;
+            font-weight: 500;
+            color: var(--gray-900);
+            margin-bottom: 0.3rem;
+        }
+
+        .timeline-item p {
+            font-size: 0.8rem;
+            line-height: 1.7;
+            color: var(--gray-500);
+            font-weight: 300;
+        }
+
+        .timeline-link {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            margin-top: 0.5rem;
+            font-family: var(--font-heading);
+            font-size: 0.6rem;
+            letter-spacing: 0.15em;
+            text-transform: uppercase;
+            color: var(--gray-500);
+            transition: color 0.3s ease;
+        }
+
+        .timeline-link:hover { color: var(--gray-900); }
+
+        /* Contact Section */
+        .contact-section {
+            padding: 6rem 3rem;
+            background: var(--off-white);
+        }
+
+        .contact-inner {
+            max-width: 700px;
+            margin: 0 auto;
+            text-align: center;
+        }
+
+        .contact-intro {
+            font-size: 1.05rem;
+            line-height: 1.8;
+            color: var(--gray-600);
+            font-weight: 300;
+            margin-bottom: 2.5rem;
+        }
+
+        .contact-links {
+            display: flex;
+            justify-content: center;
+            gap: 2.5rem;
+            margin-bottom: 3rem;
+            flex-wrap: wrap;
+        }
+
+        .contact-link {
+            display: flex;
+            align-items: center;
+            gap: 0.6rem;
+            font-size: 0.8rem;
+            color: var(--gray-500);
+            transition: color 0.3s ease;
+        }
+
+        .contact-link:hover { color: var(--gray-900); }
+        .contact-link svg { width: 16px; height: 16px; flex-shrink: 0; opacity: 0.4; }
+
+        .contact-form-compact {
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
+            max-width: 480px;
+            margin: 0 auto;
+        }
+
+        .contact-form-compact input,
+        .contact-form-compact textarea {
+            width: 100%;
+            background: var(--white);
+            border: 1px solid var(--gray-200);
+            padding: 0.7rem 1rem;
+            color: var(--gray-800);
+            font-family: var(--font-body);
+            font-size: 0.85rem;
+            font-weight: 300;
+            outline: none;
+            transition: border-color 0.3s ease;
+        }
+
+        .contact-form-compact input:focus,
+        .contact-form-compact textarea:focus { border-color: var(--gray-500); }
+
+        .contact-form-compact input::placeholder,
+        .contact-form-compact textarea::placeholder { color: var(--gray-400); }
+
+        .contact-form-compact textarea { resize: none; height: 80px; }
+
+        .submit-btn {
+            align-self: flex-start;
+            padding: 0.7rem 2rem;
+            background: var(--gray-900);
+            color: var(--white);
+            border: none;
+            font-family: var(--font-heading);
+            font-size: 0.65rem;
+            letter-spacing: 0.2em;
+            text-transform: uppercase;
+            cursor: pointer;
+            transition: background 0.3s ease;
+        }
+
+        .submit-btn:hover { background: var(--gray-700); }
+
+        /* ========== SHOP ========== */
+        .shop {
+            padding: 5rem 3rem;
+        }
+
+        .shop-inner { max-width: 1300px; margin: 0 auto; }
+
+        .shop-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 2.5rem;
+        }
+
+        .shop-item {
+            background: var(--off-white);
+            overflow: hidden;
+            transition: transform 0.4s ease, box-shadow 0.4s ease;
+        }
+
+        .shop-item:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 20px 60px rgba(0,0,0,0.06);
+        }
+
+        .shop-item-images {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 2px;
+        }
+
+        .shop-item-images img {
+            width: 100%;
+            aspect-ratio: 1;
+            object-fit: cover;
+            cursor: zoom-in;
+        }
+
+        .shop-item-info { padding: 1.8rem; }
+
+        .shop-item-info h3 {
+            font-family: var(--font-heading);
+            font-size: 1rem;
+            font-weight: 500;
+            margin-bottom: 0.4rem;
+        }
+
+        .shop-item-info .description {
+            font-size: 0.75rem;
+            color: var(--gray-500);
+            margin-bottom: 0.8rem;
+        }
+
+        .shop-item-info .price {
+            font-family: var(--font-heading);
+            font-size: 0.8rem;
+            color: var(--gray-600);
+            margin-bottom: 1rem;
+        }
+
+        .inquire-btn {
+            display: inline-block;
+            padding: 0.6rem 1.8rem;
+            border: 1px solid var(--gray-300);
+            color: var(--gray-700);
+            font-family: var(--font-heading);
+            font-size: 0.65rem;
+            letter-spacing: 0.2em;
+            text-transform: uppercase;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            background: none;
+        }
+
+        .inquire-btn:hover { background: var(--gray-900); color: var(--white); border-color: var(--gray-900); }
+
+        /* ========== FOOTER ========== */
+        footer {
+            position: relative;
+            padding: 2.5rem 3rem;
+            border-top: 1px solid var(--gray-100);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-size: 0.7rem;
+            color: var(--gray-500);
+        }
+
+        .footer-links { display: flex; gap: 2rem; }
+        .footer-links a { color: var(--gray-500); transition: color 0.3s; font-size: 0.7rem; }
+        .footer-links a:hover { color: var(--gray-900); }
+
+        .footer-social { display: flex; gap: 1.5rem; }
+        .footer-social a { color: var(--gray-400); transition: color 0.3s; }
+        .footer-social a:hover { color: var(--gray-900); }
+
+        /* ========== LIGHTBOX ========== */
+        .lightbox {
+            position: fixed; inset: 0; z-index: 9999;
+            background: rgba(255,255,255,0.97);
+            display: none;
+            align-items: center; justify-content: center;
+            cursor: zoom-out;
+            backdrop-filter: blur(30px);
+        }
+
+        .lightbox.active { display: flex; }
+
+        .lightbox-content {
+            display: flex; gap: 8px;
+            max-width: 92vw; max-height: 88vh;
+            align-items: center; justify-content: center;
+        }
+
+        .lightbox-content img { max-height: 85vh; object-fit: contain; cursor: default; }
+        .lightbox-content.single img { max-width: 90vw; }
+        .lightbox-content.multi img { max-width: 45vw; }
+
+        .lightbox-close {
+            position: absolute; top: 2rem; right: 2rem;
+            background: none; border: none; color: var(--gray-500);
+            font-size: 1.5rem; cursor: pointer; z-index: 10;
+            transition: color 0.3s;
+        }
+
+        .lightbox-close:hover { color: var(--gray-900); }
+
+        .lightbox-nav {
+            position: absolute; top: 50%; transform: translateY(-50%);
+            background: none; border: none; color: var(--gray-400);
+            font-size: 2rem; cursor: pointer; padding: 1rem; z-index: 10;
+            transition: color 0.3s;
+        }
+
+        .lightbox-nav:hover { color: var(--gray-900); }
+        .lightbox-prev { left: 1.5rem; }
+        .lightbox-next { right: 1.5rem; }
+
+        .lightbox-caption {
+            position: absolute; bottom: 2rem;
+            left: 50%; transform: translateX(-50%);
+            text-align: center;
+        }
+
+        .lightbox-caption h3 { font-family: var(--font-heading); font-size: 0.9rem; font-weight: 500; color: var(--gray-800); }
+        .lightbox-caption p { font-size: 0.7rem; color: var(--gray-500); }
+
+        /* ========== REVEAL ========== */
+        .reveal {
+            opacity: 0; transform: translateY(25px);
+            transition: opacity 0.8s cubic-bezier(0.16, 1, 0.3, 1), transform 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+        .reveal.visible { opacity: 1; transform: translateY(0); }
+
+        /* ========== RESPONSIVE ========== */
+        @media (max-width: 1024px) {
+            .about-bio { grid-template-columns: 1fr; gap: 3rem; align-items: start; }
+            .about-image img { aspect-ratio: 16/10; }
+            .about-timeline-col { order: 3; }
+            .shop-grid { grid-template-columns: repeat(2, 1fr); }
+        }
+
+        @media (max-width: 768px) {
+            .nav { padding: 1.5rem; }
+            .nav.scrolled { padding: 1rem 1.5rem; }
+            .nav-links {
+                display: none; position: fixed; inset: 0;
+                background: var(--white);
+                flex-direction: column; align-items: center; justify-content: center;
+                gap: 2.5rem; z-index: 100;
+            }
+            .nav-links.active { display: flex; }
+            .nav-links a { font-size: 1rem; color: var(--gray-800); }
+            .menu-toggle { display: block; }
+            .nav-right { gap: 1.5rem; }
+
+            .portfolio { padding: 5rem 1.5rem; }
+            .portfolio-grid,
+            .portfolio-more-grid {
+                grid-template-columns: 1fr;
+                column-gap: 0;
+                row-gap: 20px;
+            }
+            .portfolio-grid .portfolio-item,
+            .portfolio-more-grid .portfolio-item {
+                width: 100% !important;
+                justify-self: stretch !important;
+            }
+
+            .about-section { padding: 4rem 1.5rem 3rem; }
+            .timeline { padding-left: 2rem; }
+            .timeline-item::before { left: -2rem; }
+
+            .shop { padding: 5rem 1.5rem; }
+            .shop-grid { grid-template-columns: 1fr; gap: 2rem; }
+
+            .contact-section { padding: 4rem 1.5rem; }
+            .contact-links { flex-direction: column; align-items: center; gap: 1rem; }
+
+            .hero-content { padding: 0 1.5rem 4rem; }
+
+            footer { padding: 2rem 1.5rem; flex-direction: column; gap: 1.5rem; text-align: center; }
+            .footer-links { flex-wrap: wrap; justify-content: center; }
+
+            .lightbox-content.multi { flex-direction: column; }
+            .lightbox-content.multi img { max-width: 90vw; max-height: 42vh; }
+        }
+
+        @media (max-width: 480px) {
+            .portfolio-grid { grid-template-columns: 1fr; }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Navigation -->
+    <nav class="nav over-hero" id="nav">
+        <a href="#" class="nav-logo">Stephan Meissner</a>
+        <div class="nav-right">
+            <button class="menu-toggle" id="menuToggle" aria-label="Menu">
+                <span></span><span></span><span></span>
+            </button>
+            <ul class="nav-links" id="navLinks">
+                <li><a href="#portfolio" data-en="Works" data-de="Arbeiten">Works</a></li>
+                <li><a href="#about" data-en="About" data-de="Über">About</a></li>
+                <li><a href="#shop" data-en="Shop" data-de="Shop">Shop</a></li>
+                <li><a href="#contact" data-en="Contact" data-de="Kontakt">Contact</a></li>
+                <li><button class="lang-toggle" id="langToggle">DE</button></li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- Hero Slideshow — fast 1s cuts -->
+    <section class="hero" id="hero" aria-label="Hero slideshow">
+        <div class="hero-slides" id="heroSlides">
+            <div class="hero-slide active"><img src="images/hero/artcaden%20nachz(1).jpg" alt="Artcarden Installation"></div>
+            <div class="hero-slide"><img src="images/hero/TT_RSA_web-26.jpg" alt="RSA Grid Room"></div>
+            <div class="hero-slide"><img src="images/hero/HQ_Taiwan2_Installationen-67.jpg" alt="Taiwan Exhibition"></div>
+            <div class="hero-slide"><img src="images/hero/TobiasAde_221228_autofinal-12.jpg" alt="Porsche Art Car"></div>
+            <div class="hero-slide"><img src="images/hero/20190712_TAPE%20THAT_Space_0397(1).jpg" alt="Tape That Space"></div>
+            <div class="hero-slide"><img src="images/hero/Tape_Art_Tape_That_Japanisches-Palais_Dresden_2020-18(1)_totale.jpg" alt="Japanisches Palais"></div>
+            <div class="hero-slide"><img src="images/hero/1805_LB_TT_Berlin%20Mural_PRINT-16(2).jpg" alt="Berlin Mural"></div>
+            <div class="hero-slide"><img src="images/hero/foyer_01.jpg" alt="Coco Cologne"></div>
+            <div class="hero-slide"><img src="images/hero/WeShare_ArtCar_KeyShot_Tape_That(2).jpg" alt="WeShare Art Car"></div>
+            <div class="hero-slide"><img src="images/hero/TAC16_09.jpg" alt="Tape Art Convention"></div>
+            <div class="hero-slide"><img src="images/hero/IMG_20200910_122019(4).jpg" alt="Parkhaus Mural"></div>
+            <div class="hero-slide"><img src="images/hero/portfolio_bearbeitet_druck_AD-33(1).jpg" alt="Installation"></div>
+            <div class="hero-slide"><img src="images/hero/trade%20desk_portfolio%20kandidat2.jpg" alt="Trade Desk"></div>
+            <div class="hero-slide"><img src="images/hero/1907_LB_TT_Taiwan_artworks-40.jpg" alt="Taiwan Artworks"></div>
+            <div class="hero-slide"><img src="images/hero/Taiwan%20train_portfolio%20kandidat(1).jpg" alt="Taiwan Train"></div>
+        </div>
+        <div class="hero-overlay"></div>
+        <div class="hero-content">
+            <h1 class="hero-name">Stephan Meissner</h1>
+            <p class="hero-tagline" data-en="Tape Art · Visual Artist · Berlin" data-de="Tape Art · Bildender Künstler · Berlin">Tape Art · Visual Artist · Berlin</p>
+        </div>
+    </section>
+
+    <!-- Portfolio -->
+    <section class="portfolio" id="portfolio" aria-label="Portfolio artworks">
+        <div class="portfolio-header">
+            <h2 class="section-title reveal" data-en="Selected Works" data-de="Ausgewählte Arbeiten">Selected Works</h2>
+        </div>
+        <div class="portfolio-grid" id="portfolioGrid">
+
+            <div class="portfolio-item ar-landscape w-95 reveal" data-title="Tape Splash" data-desc="Immersive room installation" data-images='["images/portfolio/tape%20splash/20190712_TAPE%20THAT_Space_0397(1)_totale.jpg","images/portfolio/tape%20splash/190704_LB_TT_Taiwan-5.jpg","images/portfolio/tape%20splash/190706_LB_TT_Taiwan-20.jpg","images/portfolio/tape%20splash/190706_LB_TT_Taiwan-5.jpg","images/portfolio/tape%20splash/190712_LB_TT_Taiwan-46.jpg","images/portfolio/tape%20splash/1907_LB_TT_Taiwan_2nd%20draft-35.jpg"]'>
+                <img src="images/portfolio/tape%20splash/20190712_TAPE%20THAT_Space_0397(1)_totale.jpg" alt="Tape Splash — immersive room installation with colorful tape" loading="lazy">
+                <div class="overlay"><div class="overlay-text"><h3>Tape Splash</h3><p>Immersive room installation</p></div></div>
+            </div>
+
+            <div class="portfolio-item ar-portrait w-70 reveal" data-title="RSA Grid Room" data-desc="Immersive black & white installation" data-images='["images/portfolio/23-rsa-grid-room/TT_RSA_web-26.jpg","images/portfolio/23-rsa-grid-room/RSA_bearbeitet_portfolio-2.jpg","images/portfolio/23-rsa-grid-room/TT_RSA_web-11(2).jpg","images/portfolio/23-rsa-grid-room/TT_RSA_web-7(1).jpg","images/portfolio/23-rsa-grid-room/DSC01912.jpg"]'>
+                <img src="images/portfolio/23-rsa-grid-room/TT_RSA_web-26.jpg" alt="RSA Grid Room — immersive black and white tape grid installation" loading="lazy">
+                <div class="overlay"><div class="overlay-text"><h3>RSA Grid Room</h3><p>Immersive b/w installation</p></div></div>
+            </div>
+
+            <div class="portfolio-item ar-square w-80 reveal" data-title="Porsche Art Car" data-desc="75 Years Porsche" data-images='["images/portfolio/08-porsche-artcar/insta_caroussel_1x1_0000s_0009s_0003_034_75JahrePorsche_WHITE_FRAME_©Marc Schultheiss_totale.jpg","images/portfolio/08-porsche-artcar/TobiasAde_221228_autofinal-12.jpg","images/portfolio/08-porsche-artcar/175_75JahrePorsche_CARSHOTS_BTS_©Marc Schultheiss.jpg","images/portfolio/08-porsche-artcar/076_75JahrePorsche_CARSHOTS_BTS_©Marc Schultheiss.jpg","images/portfolio/08-porsche-artcar/062_75JahrePorsche_CARSHOTS_BTS_©Marc Schultheiss.jpg","images/portfolio/08-porsche-artcar/031_75JahrePorsche_CARSHOTS_BTS_©Marc Schultheiss.jpg"]'>
+                <img src="images/portfolio/08-porsche-artcar/insta_caroussel_1x1_0000s_0009s_0003_034_75JahrePorsche_WHITE_FRAME_%C2%A9Marc%20Schultheiss_totale.jpg" alt="Porsche Art Car — colorful tape art on Porsche 911" loading="lazy">
+                <div class="overlay"><div class="overlay-text"><h3>Porsche Art Car</h3><p>75 Years Porsche</p></div></div>
+            </div>
+
+            <div class="portfolio-item ar-portrait w-100 reveal" data-title="Japanisches Palais" data-desc="Dresden" data-images='["images/portfolio/19-japanisches-palais/Tape_Art_Tape_That_Japanisches-Palais_Dresden_2020-18(1)_totale.jpg","images/portfolio/19-japanisches-palais/HQ_japanisches_palais-10(2).jpg","images/portfolio/19-japanisches-palais/Tape_Art_Tape_That_Japanisches-Palais_Dresden_2020-21(1).jpg","images/portfolio/19-japanisches-palais/Tape_Art_Tape_That_Japanisches-Palais_Dresden_2020-25.jpg"]'>
+                <img src="images/portfolio/19-japanisches-palais/Tape_Art_Tape_That_Japanisches-Palais_Dresden_2020-18(1)_totale.jpg" alt="Japanisches Palais — colorful tape mural in historic staircase, Dresden" loading="lazy">
+                <div class="overlay"><div class="overlay-text"><h3>Japanisches Palais</h3><p>Dresden</p></div></div>
+            </div>
+
+            <div class="portfolio-item ar-square w-75 reveal" data-title="FiP Installation" data-desc="Site-specific room installation" data-images='["images/portfolio/01-fip-rauminstallation/FiP_printAD-11_totale.jpg","images/portfolio/01-fip-rauminstallation/FiP_printAD-4.jpg","images/portfolio/01-fip-rauminstallation/FiP_printAD-5(1).jpg","images/portfolio/01-fip-rauminstallation/insta_caroussel_1x1_0000s_0006s_0000_FiP_printAD12.jpg","images/portfolio/01-fip-rauminstallation/insta_caroussel_1x1_0000s_0006s_0001_FiP_printAD-2.jpg"]'>
+                <img src="images/portfolio/01-fip-rauminstallation/FiP_printAD-11_totale.jpg" alt="FiP Installation — orange and blue room installation with columns" loading="lazy">
+                <div class="overlay"><div class="overlay-text"><h3>FiP Installation</h3><p>Room installation</p></div></div>
+            </div>
+
+            <div class="portfolio-item ar-landscape w-95 reveal" data-title="BVG Pride U-Bahn" data-desc="Rainbow tape, Berlin subway" data-images='["images/portfolio/26-bvg-pride-ubahn/DSCF7247(1).jpg","images/portfolio/26-bvg-pride-ubahn/DSCF7150.jpg","images/portfolio/26-bvg-pride-ubahn/DSCF7162.jpg"]'>
+                <img src="images/portfolio/26-bvg-pride-ubahn/DSCF7247(1).jpg" alt="BVG Pride U-Bahn — rainbow tape in Berlin subway station" loading="lazy">
+                <div class="overlay"><div class="overlay-text"><h3>BVG Pride U-Bahn</h3><p>Berlin subway</p></div></div>
+            </div>
+
+            <div class="portfolio-item ar-square w-65 reveal" data-title="Coco Cologne" data-desc="Black & white stripes" data-images='["images/portfolio/29-corporate-bw-installation/foyer_01.jpg","images/portfolio/29-corporate-bw-installation/haupteingang_02.jpg","images/portfolio/29-corporate-bw-installation/20231011_094618.jpg","images/portfolio/29-corporate-bw-installation/20231011_100949.jpg"]'>
+                <img src="images/portfolio/29-corporate-bw-installation/foyer_01.jpg" alt="Coco Cologne — black and white tape stripes installation" loading="lazy">
+                <div class="overlay"><div class="overlay-text"><h3>Coco Cologne</h3><p>Black & white</p></div></div>
+            </div>
+
+            <div class="portfolio-item ar-portrait w-85 reveal" data-title="Tape Tesseract" data-desc="Canvas series" data-images='["images/portfolio/31-tape-tesseract/IMG_8130_totale.jpg","images/portfolio/31-tape-tesseract/IMG_8108.JPG","images/portfolio/31-tape-tesseract/IMG_8129.jpg","images/portfolio/31-tape-tesseract/IMG_8131.jpg","images/portfolio/31-tape-tesseract/IMG_8132.jpg"]'>
+                <img src="images/portfolio/31-tape-tesseract/IMG_8130_totale.jpg" alt="Tape Tesseract — geometric tape art canvas series" loading="lazy">
+                <div class="overlay"><div class="overlay-text"><h3>Tape Tesseract</h3><p>Canvas series</p></div></div>
+            </div>
+
+        </div>
+
+        <div class="show-more-wrap" id="showMoreWrap">
+            <button id="showMoreBtn" data-en="Show More +" data-de="Mehr anzeigen +">Show More +</button>
+        </div>
+
+        <div id="portfolioMore" style="display:none;">
+            <div class="portfolio-more-grid">
+
+                    <div class="portfolio-item ar-landscape w-90 reveal" data-title="Taiwan Exhibition" data-desc="Songshan Cultural Park, Taipei" data-images='["images/portfolio/03-taiwan-exhibition/HQ_Taiwan2_Installationen-67.jpg","images/portfolio/03-taiwan-exhibition/HQ_Taiwan2_Installationen-60.jpg","images/portfolio/03-taiwan-exhibition/HQ_Taiwan2_Installationen-66.jpg","images/portfolio/03-taiwan-exhibition/190712_LB_TT_Taiwan-38.jpg","images/portfolio/03-taiwan-exhibition/190712_LB_TT_Taiwan-24.jpg","images/portfolio/03-taiwan-exhibition/190708_LB_TT_Taiwan-16.jpg","images/portfolio/03-taiwan-exhibition/190709_LB_TT_Taiwan-12.jpg","images/portfolio/03-taiwan-exhibition/190709_LB_TT_Taiwan-14.jpg","images/portfolio/03-taiwan-exhibition/1907_LB_TT_Taiwan_2nd%20draft-38.jpg","images/portfolio/03-taiwan-exhibition/20190712_TAPE%20bearbeitet%202026.jpg"]'>
+                        <img src="images/portfolio/03-taiwan-exhibition/HQ_Taiwan2_Installationen-67.jpg" alt="Taiwan Exhibition — large-scale colorful tape installation, Songshan Cultural Park" loading="lazy">
+                        <div class="overlay"><div class="overlay-text"><h3>Taiwan Exhibition</h3><p>Songshan Cultural Park, Taipei</p></div></div>
+                    </div>
+
+                    <div class="portfolio-item ar-square w-65 reveal" data-title="Illuseum Grid Room" data-desc="Immersive black & white grid" data-images='["images/portfolio/02-illuseum-grid-room/HQ_illuseum-10_totale.jpg","images/portfolio/02-illuseum-grid-room/HQ_illuseum-9(1).jpg","images/portfolio/02-illuseum-grid-room/HQ_illuseum-11.jpg"]'>
+                        <img src="images/portfolio/02-illuseum-grid-room/HQ_illuseum-10_totale.jpg" alt="Illuseum Grid Room — immersive black and white grid room" loading="lazy">
+                        <div class="overlay"><div class="overlay-text"><h3>Illuseum Grid Room</h3><p>Immersive b/w grid</p></div></div>
+                    </div>
+
+                    <div class="portfolio-item ar-landscape w-80 reveal" data-title="Artcarden" data-desc="Room-filling installation, Berlin" data-images='["images/portfolio/04-artcarden-installation/artcaden%20nachz(1)_totale.jpg","images/portfolio/04-artcarden-installation/artcarden-58.jpg","images/portfolio/04-artcarden-installation/tape_that_tape_art_camouflage_berlin_artcaden_exhibition-22.jpg","images/portfolio/04-artcarden-installation/tape_that_tape_art_camouflage_berlin_artcaden_exhibition-24.jpg","images/portfolio/04-artcarden-installation/Artcaden_2017 (175).jpg","images/portfolio/04-artcarden-installation/artcaden nachz(1).jpg"]'>
+                        <img src="images/portfolio/04-artcarden-installation/artcaden%20nachz(1)_totale.jpg" alt="Artcarden — explosive colorful room-filling tape installation" loading="lazy">
+                        <div class="overlay"><div class="overlay-text"><h3>Artcarden</h3><p>Room installation, Berlin</p></div></div>
+                    </div>
+
+                    <div class="portfolio-item ar-landscape w-100 reveal" data-title="Sleek × Cadillac" data-desc="Art Car" data-images='["images/portfolio/05-sleek-cadillac/Cadillac_Sleek_PopUp_RAW_367_totale.jpg","images/portfolio/05-sleek-cadillac/sleek_cadillac_print.jpg","images/portfolio/05-sleek-cadillac/sleek_cadillac_print-2.jpg","images/portfolio/05-sleek-cadillac/sleek_cadillac_print-3(1).jpg","images/portfolio/05-sleek-cadillac/Cadillac_Sleek_PopUp_RAW_368.jpg","images/portfolio/05-sleek-cadillac/Cadillac_Sleek_PopUp_RAW_369.jpg"]'>
+                        <img src="images/portfolio/05-sleek-cadillac/Cadillac_Sleek_PopUp_RAW_367_totale.jpg" alt="Sleek × Cadillac — black and white tape art car" loading="lazy">
+                        <div class="overlay"><div class="overlay-text"><h3>Sleek × Cadillac</h3><p>Art Car</p></div></div>
+                    </div>
+
+                    <div class="portfolio-item ar-square w-60 reveal" data-title="Various" data-desc="Selected works" data-images='["images/portfolio/09-moebius-galerie/Möbius_totale_print-2.jpg","images/portfolio/09-moebius-galerie/DSC00086.jpg","images/portfolio/24-various/1810_lb_TapeThat_Festival_of_Lights-10(1).jpg","images/portfolio/24-various/TAATW_USA_web-31.jpg","images/portfolio/24-various/2018_Tape Art Around The World_Guatemala City(1).jpg","images/portfolio/28-corridor-installation/DSCF1152.jpg"]'>
+                        <img src="images/portfolio/24-various/TAATW_USA_web-31.jpg" alt="Various — selected works from around the world" loading="lazy">
+                        <div class="overlay"><div class="overlay-text"><h3>Various</h3><p data-en="Selected works" data-de="Ausgewählte Arbeiten">Selected works</p></div></div>
+                    </div>
+
+                    <div class="portfolio-item ar-square w-85 reveal" data-title="Formula E Art Car" data-desc="Tape art race car" data-images='["images/portfolio/27-formula-e-artcar/IMG_1792_bearbeitet.jpg","images/portfolio/27-formula-e-artcar/TT_Formel_E_making_of-2.jpg","images/portfolio/27-formula-e-artcar/TT_Formel_E_making_of.jpg","images/portfolio/27-formula-e-artcar/e0f1f80a-837d-403e-94cf-9e0e85005890.jpg"]'>
+                        <img src="images/portfolio/27-formula-e-artcar/IMG_1792_bearbeitet.jpg" alt="Formula E Art Car — blue tape art race car" loading="lazy">
+                        <div class="overlay"><div class="overlay-text"><h3>Formula E Art Car</h3><p>Race car</p></div></div>
+                    </div>
+
+                    <div class="portfolio-item ar-portrait w-90 reveal" data-title="Freiraum" data-desc="Black & white, geometric" data-images='["images/portfolio/22-freiraum-bw/HQ_freiraum-7(1)_totale.jpg","images/portfolio/22-freiraum-bw/HQ_freiraum.jpg","images/portfolio/22-freiraum-bw/HQ_freiraum-4(1).jpg","images/portfolio/22-freiraum-bw/HQ_freiraum-6.jpg","images/portfolio/22-freiraum-bw/HQ_freiraum-8(2).jpg"]'>
+                        <img src="images/portfolio/22-freiraum-bw/HQ_freiraum-7(1)_totale.jpg" alt="Freiraum — geometric black and white wall installation" loading="lazy">
+                        <div class="overlay"><div class="overlay-text"><h3>Freiraum</h3><p>Geometric b/w</p></div></div>
+                    </div>
+
+                    <div class="portfolio-item ar-landscape w-100 reveal" data-title="Game Over / Sweetspot" data-desc="Room installation with text & mirrors" data-images='["images/portfolio/10-game-over-sweetspot/GO_SweetSpot2_druck(1)_totale.jpg","images/portfolio/10-game-over-sweetspot/Tape-That_Tape-Art_Game-Over-Berlin_2022-2.jpg","images/portfolio/10-game-over-sweetspot/HQ_GameOver_Anamorphose(1).jpg","images/portfolio/10-game-over-sweetspot/HQ_GameOver_Anamorphose-2(1).jpg","images/portfolio/10-game-over-sweetspot/HQ_GameOver_Anamorphose-3(1)(1).jpg"]'>
+                        <img src="images/portfolio/10-game-over-sweetspot/GO_SweetSpot2_druck(1)_totale.jpg" alt="Game Over / Sweetspot — room installation with text and mirrors" loading="lazy">
+                        <div class="overlay"><div class="overlay-text"><h3>Game Over / Sweetspot</h3><p>Text & mirrors</p></div></div>
+                    </div>
+
+                    <div class="portfolio-item ar-square w-65 reveal" data-title="Roland Berger" data-desc="Corporate mural" data-images='["images/portfolio/11-roland-berger/Roland Berger_fotos_druck_AD-53.jpg","images/portfolio/11-roland-berger/Roland_Berger_AD_Fotos-3.jpg","images/portfolio/11-roland-berger/Roland_Berger_AD_Fotos-9.jpg"]'>
+                        <img src="images/portfolio/11-roland-berger/Roland%20Berger_fotos_druck_AD-53.jpg" alt="Roland Berger — corporate tape art mural" loading="lazy">
+                        <div class="overlay"><div class="overlay-text"><h3>Roland Berger</h3><p>Corporate mural</p></div></div>
+                    </div>
+
+                    <div class="portfolio-item ar-portrait w-80 reveal" data-title="Popcorn Hong Kong" data-desc="Shopping mall installation" data-images='["images/portfolio/12-popcorn-hongkong/TT_Popcorn_HK_Auswahl_druck-staircase_DB_druck(1)_totale.jpg","images/portfolio/12-popcorn-hongkong/TT_Popcorn_HK_Auswahl_druck-3.jpg","images/portfolio/12-popcorn-hongkong/TT_Popcorn_HK_Auswahl_druck-32-test2.jpg","images/portfolio/12-popcorn-hongkong/TT_Popcorn_HK_Auswahl_druck-35.jpg","images/portfolio/12-popcorn-hongkong/TT_Popcorn_HK_Auswahl_druck-37.jpg"]'>
+                        <img src="images/portfolio/12-popcorn-hongkong/TT_Popcorn_HK_Auswahl_druck-staircase_DB_druck(1)_totale.jpg" alt="Popcorn Hong Kong — white tape installation in shopping mall" loading="lazy">
+                        <div class="overlay"><div class="overlay-text"><h3>Popcorn Hong Kong</h3><p>Shopping mall installation</p></div></div>
+                    </div>
+
+                    <div class="portfolio-item ar-landscape w-85 reveal" data-title="Trade Desk" data-desc="Corporate installation" data-images='["images/portfolio/20-trade-desk/trade desk_portfolio kandidat2.jpg","images/portfolio/20-trade-desk/HQ_trade_desk-2.jpg","images/portfolio/20-trade-desk/tradedesk_hochkant_portfolio kandidat.jpg"]'>
+                        <img src="images/portfolio/20-trade-desk/trade%20desk_portfolio%20kandidat2.jpg" alt="Trade Desk — corporate tape art glass installation" loading="lazy">
+                        <div class="overlay"><div class="overlay-text"><h3>Trade Desk</h3><p>Corporate installation</p></div></div>
+                    </div>
+
+                    <div class="portfolio-item ar-landscape w-100 reveal" data-title="Berlin Mural" data-desc="Large-scale mural" data-images='["images/portfolio/14-berlin-mural/1805_LB_TT_Berlin Mural_PRINT-16(2)_totale.jpg","images/portfolio/14-berlin-mural/1805_LB_TT_Berlin Mural_PRINT-15.jpg","images/portfolio/14-berlin-mural/1805_LB_Tape That_Berlin Mural Festival_PRINT-1.jpg","images/portfolio/14-berlin-mural/Tape Art_Tape That_Berlin_Mural_Fest-7.jpg"]'>
+                        <img src="images/portfolio/14-berlin-mural/1805_LB_TT_Berlin%20Mural_PRINT-16(2)_totale.jpg" alt="Berlin Mural — large-scale colorful tape art mural" loading="lazy">
+                        <div class="overlay"><div class="overlay-text"><h3>Berlin Mural</h3><p>Large-scale, Berlin</p></div></div>
+                    </div>
+
+                    <div class="portfolio-item ar-square w-60 reveal" data-title="Parkhaus Mural" data-desc="Parking garage installation" data-images='["images/portfolio/25-parkhaus-mural/IMG_20200910_122019(4).jpg","images/portfolio/25-parkhaus-mural/IMG_20200910_122019(3).jpg","images/portfolio/25-parkhaus-mural/IMG_20200910_122100.jpg"]'>
+                        <img src="images/portfolio/25-parkhaus-mural/IMG_20200910_122019(4).jpg" alt="Parkhaus Mural — abstract tape art in parking garage" loading="lazy">
+                        <div class="overlay"><div class="overlay-text"><h3>Parkhaus Mural</h3><p>Parking garage</p></div></div>
+                    </div>
+
+                    <div class="portfolio-item ar-landscape w-90 reveal" data-title="Tape Art Convention" data-desc="International tape art exhibition, Berlin" data-images='["images/portfolio/15-tape-art-convention/Tape_Art_Convention_Tape_That_Berlin-3_totale.jpg","images/portfolio/15-tape-art-convention/Tape_Art_Convention_Tape_That_Berlin.jpg","images/portfolio/15-tape-art-convention/2018_Gefuehl_325x200cm_Stephan-Meissner.jpg","images/portfolio/15-tape-art-convention/Tape Art Convention 2018_Artist_Stephan Meissner_photo by Laurenz H. Bostedt.jpg"]'>
+                        <img src="images/portfolio/15-tape-art-convention/Tape_Art_Convention_Tape_That_Berlin-3_totale.jpg" alt="Tape Art Convention — international tape art exhibition, Berlin" loading="lazy">
+                        <div class="overlay"><div class="overlay-text"><h3>Tape Art Convention</h3><p>International exhibition, Berlin</p></div></div>
+                    </div>
+
+                    <div class="portfolio-item ar-square w-90 reveal" data-title="MT Factory Tour" data-desc="Japan 2018" data-images='["images/portfolio/13-mt-factory-tour-japan/portfolio_bearbeitet_druck_AD-55(1)_totale.jpg","images/portfolio/13-mt-factory-tour-japan/mt_factory tour 2018_druck.jpg","images/portfolio/13-mt-factory-tour-japan/mt_factory tour 2018_druck-2.jpg","images/portfolio/13-mt-factory-tour-japan/mt_factory tour 2018_druck-3.jpg","images/portfolio/13-mt-factory-tour-japan/mt_factory tour 2018_druck-5.jpg","images/portfolio/13-mt-factory-tour-japan/mt_factory tour 2018_druck-6.jpg"]'>
+                        <img src="images/portfolio/13-mt-factory-tour-japan/portfolio_bearbeitet_druck_AD-55(1)_totale.jpg" alt="MT Factory Tour — colorful tape art installation, Japan 2018" loading="lazy">
+                        <div class="overlay"><div class="overlay-text"><h3>MT Factory Tour</h3><p>Japan</p></div></div>
+                    </div>
+
+                    <div class="portfolio-item ar-square w-75 reveal" data-title="Anamorphose" data-desc="Anamorphic tape installation" data-images='["images/portfolio/Anamorphose/HQ_Taiwan2_Installationen-60_totale.jpg","images/portfolio/Anamorphose/HQ_Taiwan2_Installationen-66.jpg","images/portfolio/Anamorphose/HQ_Taiwan2_Installationen-67.jpg"]'>
+                        <img src="images/portfolio/Anamorphose/HQ_Taiwan2_Installationen-60_totale.jpg" alt="Anamorphose — anamorphic tape art installation" loading="lazy">
+                        <div class="overlay"><div class="overlay-text"><h3>Anamorphose</h3><p>Anamorphic installation</p></div></div>
+                    </div>
+
+                </div>
+            </div>
+
+    </section>
+
+
+    <!-- About -->
+    <section class="about-section" id="about" aria-label="About the artist">
+        <div class="about-inner">
+            <h2 class="section-title reveal" data-en="About" data-de="Über">About</h2>
+            <div class="about-bio">
+                <div class="about-image reveal">
+                    <img src="images/about/Stephan%20Meissner(3).jpg" alt="Stephan Meissner">
+                </div>
+                <div class="about-text">
+                    <p class="reveal" data-en="Stephan Meissner has been living and working as a visual artist in Berlin since 2009. Born in Bonn in 1989, he developed his artistic approach through classical graffiti stylewriting. His engagement with letters, systems of order, and predominantly typographic rules forms the foundation of his work to this day." data-de="Stephan Meissner lebt und arbeitet seit 2009 als bildender Künstler in Berlin. Geboren 1989 in Bonn, entwickelte er seinen künstlerischen Ansatz aus dem klassischen Graffiti-Stylewriting. Die Auseinandersetzung mit Buchstaben, Ordnungssystemen und überwiegend typografischen Regeln bildet bis heute die Grundlage seiner Arbeit.">Stephan Meissner has been living and working as a visual artist in Berlin since 2009. Born in Bonn in 1989, he developed his artistic approach through classical graffiti stylewriting. His engagement with letters, systems of order, and predominantly typographic rules forms the foundation of his work to this day.</p>
+                    <p class="reveal" data-en="Meissner's works emerge from a clearly defined formal language, characterized by straight lines and strong contrasts. The choice of tape as a central working material is not a formal restriction, but a deliberate decision: every line is the result of a choice — between order and disruption, control and deviation." data-de="Meissners Werke entstehen aus einer klar definierten Formsprache, geprägt von geraden Linien und starken Kontrasten. Die Entscheidung für Klebeband als zentrales Arbeitsmittel ist dabei keine formale Einschränkung, sondern eine bewusste Setzung: Jede Linie ist Ergebnis einer Entscheidung – zwischen Ordnung und Bruch, Kontrolle und Abweichung.">Meissner's works emerge from a clearly defined formal language, characterized by straight lines and strong contrasts. The choice of tape as a central working material is not a formal restriction, but a deliberate decision: every line is the result of a choice — between order and disruption, control and deviation.</p>
+                    <p class="reveal" data-en="Many of his works are site-specific room installations — conceived for a particular space, its architecture, and proportions. Some develop over weeks of planning; others emerge spontaneously in direct dialogue with the location." data-de="Viele seiner Arbeiten sind ortsspezifische Rauminstallationen — konzipiert für einen bestimmten Raum, seine Architektur und Proportionen. Manche entstehen über Wochen der Planung; andere entwickeln sich spontan im direkten Dialog mit dem Ort.">Many of his works are site-specific room installations — conceived for a particular space, its architecture, and proportions. Some develop over weeks of planning; others emerge spontaneously in direct dialogue with the location.</p>
+                </div>
+                <div class="about-timeline-col" id="projects">
+                    <div class="timeline">
+                        <div class="timeline-item reveal">
+                            <div class="timeline-year">2011</div>
+                            <h3>Tape That Collective</h3>
+                            <p data-en="Founding of the artist collective Tape That." data-de="Gründung des Künstlerkollektivs Tape That.">Founding of the artist collective Tape That.</p>
+                            <a href="https://www.tapethatcollective.com" target="_blank" class="timeline-link">tapethatcollective.com →</a>
+                        </div>
+                        <div class="timeline-item reveal">
+                            <div class="timeline-year">2016</div>
+                            <h3>Tape Art Convention</h3>
+                            <p data-en="International tape art exhibition in Berlin." data-de="Internationale Tape Art Ausstellung in Berlin.">International tape art exhibition in Berlin.</p>
+                            <a href="https://www.tapeartconvention.com" target="_blank" class="timeline-link">tapeartconvention.com →</a>
+                        </div>
+                        <div class="timeline-item reveal">
+                            <div class="timeline-year">2017</div>
+                            <h3>Tape Art Academy</h3>
+                            <p data-en="Workshops and creative formats for teams." data-de="Workshops und kreative Formate für Teams.">Workshops and creative formats for teams.</p>
+                            <a href="https://www.tapeartacademy.com" target="_blank" class="timeline-link">tapeartacademy.com →</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+
+    <!-- Shop -->
+    <section class="shop" id="shop" aria-label="Shop original artworks">
+        <div class="shop-inner">
+            <h2 class="section-title reveal" data-en="Shop" data-de="Shop">Shop</h2>
+            <div class="shop-grid">
+                <div class="shop-item reveal">
+                    <div class="shop-item-images">
+                        <img src="images/shop/IMG_9065.JPG" alt="Artwork I" loading="lazy">
+                        <img src="images/shop/IMG_9048.JPG" alt="Artwork I detail" loading="lazy">
+                    </div>
+                    <div class="shop-item-info">
+                        <h3>Untitled I</h3>
+                        <p class="description" data-en="Tape on canvas, magenta & orange" data-de="Tape auf Leinwand, Magenta & Orange">Tape on canvas, magenta & orange</p>
+                        <div class="price" data-en="Price on request" data-de="Preis auf Anfrage">Price on request</div>
+                        <a href="mailto:sm@tapethatcollective.com?subject=Inquiry: Untitled I" class="inquire-btn" data-en="Inquire" data-de="Anfragen">Inquire</a>
+                    </div>
+                </div>
+                <div class="shop-item reveal">
+                    <div class="shop-item-images">
+                        <img src="images/shop/IMG_9111-2.jpg" alt="Artwork II" loading="lazy">
+                        <img src="images/shop/IMG_9110.jpg" alt="Artwork II detail" loading="lazy">
+                    </div>
+                    <div class="shop-item-info">
+                        <h3>Untitled II</h3>
+                        <p class="description" data-en="Tape on canvas, blue & purple" data-de="Tape auf Leinwand, Blau & Lila">Tape on canvas, blue & purple</p>
+                        <div class="price" data-en="Price on request" data-de="Preis auf Anfrage">Price on request</div>
+                        <a href="mailto:sm@tapethatcollective.com?subject=Inquiry: Untitled II" class="inquire-btn" data-en="Inquire" data-de="Anfragen">Inquire</a>
+                    </div>
+                </div>
+                <div class="shop-item reveal">
+                    <div class="shop-item-images">
+                        <img src="images/shop/IMG_9283.JPG" alt="Artwork III" loading="lazy">
+                        <img src="images/shop/IMG_9254.JPG" alt="Artwork III detail" loading="lazy">
+                    </div>
+                    <div class="shop-item-info">
+                        <h3>Untitled III</h3>
+                        <p class="description" data-en="Tape on canvas, mint & purple" data-de="Tape auf Leinwand, Mint & Lila">Tape on canvas, mint & purple</p>
+                        <div class="price" data-en="Price on request" data-de="Preis auf Anfrage">Price on request</div>
+                        <a href="mailto:sm@tapethatcollective.com?subject=Inquiry: Untitled III" class="inquire-btn" data-en="Inquire" data-de="Anfragen">Inquire</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact -->
+    <section class="contact-section" id="contact" aria-label="Contact">
+        <div class="contact-inner">
+            <h2 class="section-title reveal" data-en="Contact" data-de="Kontakt">Contact</h2>
+            <p class="contact-intro reveal" data-en="Let's Stick Together. Drop me an email if you're interested in my art, a collaboration, or just want to say hi." data-de="Let's Stick Together. Schreib mir eine E-Mail, wenn dich meine Kunst interessiert, du eine Zusammenarbeit planst oder einfach Hallo sagen möchtest.">Let's Stick Together. Drop me an email if you're interested in my art, a collaboration, or just want to say hi.</p>
+            <div class="contact-links reveal">
+                <a href="mailto:sm@tapethatcollective.com" class="contact-link">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M21.75 6.75v10.5a2.25 2.25 0 01-2.25 2.25h-15a2.25 2.25 0 01-2.25-2.25V6.75m19.5 0A2.25 2.25 0 0019.5 4.5h-15a2.25 2.25 0 00-2.25 2.25m19.5 0v.243a2.25 2.25 0 01-1.07 1.916l-7.5 4.615a2.25 2.25 0 01-2.36 0L3.32 8.91a2.25 2.25 0 01-1.07-1.916V6.75"/></svg>
+                    sm@tapethatcollective.com
+                </a>
+                <a href="https://www.instagram.com/stephanmeissner.artist/" target="_blank" class="contact-link">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="2" y="2" width="20" height="20" rx="5"/><circle cx="12" cy="12" r="5"/><circle cx="17.5" cy="6.5" r="1.5" fill="currentColor"/></svg>
+                    @stephanmeissner.artist
+                </a>
+                <a href="#" class="contact-link">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M15 10.5a3 3 0 11-6 0 3 3 0 016 0z"/><path d="M19.5 10.5c0 7.142-7.5 11.25-7.5 11.25S4.5 17.642 4.5 10.5a7.5 7.5 0 1115 0z"/></svg>
+                    Berlin, Germany
+                </a>
+            </div>
+            <form class="contact-form-compact reveal" onsubmit="handleSubmit(event)">
+                <input type="text" name="name" placeholder="Name" required data-en-placeholder="Name" data-de-placeholder="Name">
+                <input type="email" name="email" placeholder="Email" required data-en-placeholder="Email" data-de-placeholder="E-Mail">
+                <textarea name="message" placeholder="Message" required data-en-placeholder="Message" data-de-placeholder="Nachricht"></textarea>
+                <button type="submit" class="submit-btn" style="align-self: center;" data-en="Send" data-de="Senden">Send</button>
+            </form>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <span>© 2026 Stephan Meissner</span>
+        <div class="footer-links">
+            <a href="impressum.html" data-en="Imprint" data-de="Impressum">Imprint</a>
+            <a href="datenschutz.html" data-en="Privacy" data-de="Datenschutz">Privacy</a>
+        </div>
+        <div class="footer-social">
+            <a href="https://www.instagram.com/stephanmeissner.artist/" target="_blank" aria-label="Instagram">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="2" y="2" width="20" height="20" rx="5"/><circle cx="12" cy="12" r="5"/><circle cx="17.5" cy="6.5" r="1.5" fill="currentColor"/></svg>
+            </a>
+            <a href="https://www.tapethatcollective.com" target="_blank" aria-label="Tape That">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M12 21a9 9 0 100-18 9 9 0 000 18z"/><path d="M3.6 9h16.8M3.6 15h16.8"/></svg>
+            </a>
+        </div>
+    </footer>
+
+    <!-- Lightbox -->
+    <div class="lightbox" id="lightbox">
+        <button class="lightbox-close" id="lightboxClose">×</button>
+        <button class="lightbox-nav lightbox-prev" id="lightboxPrev">‹</button>
+        <button class="lightbox-nav lightbox-next" id="lightboxNext">›</button>
+        <div class="lightbox-content" id="lightboxContent"></div>
+        <div class="lightbox-caption"><h3 id="lightboxTitle"></h3><p id="lightboxDesc"></p></div>
+    </div>
+
+    <!-- JSON-LD Structured Data -->
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "Person",
+        "name": "Stephan Meissner",
+        "jobTitle": "Visual Artist",
+        "description": "Berlin-based Tape Art artist working with tape and adhesive materials. Founder of Tape That Collective, Tape Art Convention, and Tape Art Academy.",
+        "url": "https://www.stephan-meissner.com",
+        "image": "images/about/Stephan%20Meissner(3).jpg",
+        "birthDate": "1989",
+        "birthPlace": "Bonn, Germany",
+        "homeLocation": {
+            "@type": "Place",
+            "name": "Berlin, Germany"
+        },
+        "sameAs": [
+            "https://www.instagram.com/stephanmeissner.artist/",
+            "https://www.tapethatcollective.com"
+        ],
+        "affiliation": {
+            "@type": "Organization",
+            "name": "Tape That Collective",
+            "url": "https://www.tapethatcollective.com"
+        },
+        "knowsAbout": ["Tape Art", "Installation Art", "Visual Art", "Street Art", "Typography"]
+    }
+    </script>
+
+    <script>
+        // ========== HERO SLIDESHOW — fast 1s cuts ==========
+        const slides = document.querySelectorAll('.hero-slide');
+        let currentSlide = 0;
+        const SLIDE_DURATION = 1000;
+
+        function goToSlide(n) {
+            slides[currentSlide].classList.remove('active');
+            currentSlide = n;
+            slides[currentSlide].classList.add('active');
+        }
+
+        function nextSlide() {
+            goToSlide((currentSlide + 1) % slides.length);
+        }
+
+        let slideInterval = setInterval(nextSlide, SLIDE_DURATION);
+
+        // ========== LANGUAGE ==========
+        let currentLang = 'en';
+        const langToggle = document.getElementById('langToggle');
+
+        langToggle.addEventListener('click', () => {
+            currentLang = currentLang === 'en' ? 'de' : 'en';
+            langToggle.textContent = currentLang === 'en' ? 'DE' : 'EN';
+            document.documentElement.lang = currentLang;
+            document.querySelectorAll('[data-en]').forEach(el => {
+                const t = el.getAttribute(`data-${currentLang}`);
+                if (t) el.innerHTML = t;
+            });
+            document.querySelectorAll('[data-en-placeholder]').forEach(el => {
+                const p = el.getAttribute(`data-${currentLang}-placeholder`);
+                if (p) el.placeholder = p;
+            });
+        });
+
+        // ========== MOBILE MENU ==========
+        const menuToggle = document.getElementById('menuToggle');
+        const navLinks = document.getElementById('navLinks');
+        menuToggle.addEventListener('click', () => {
+            menuToggle.classList.toggle('active');
+            navLinks.classList.toggle('active');
+        });
+        navLinks.querySelectorAll('a').forEach(l => l.addEventListener('click', () => {
+            menuToggle.classList.remove('active');
+            navLinks.classList.remove('active');
+        }));
+
+        // ========== NAV ==========
+        const nav = document.getElementById('nav');
+        const heroEl = document.querySelector('.hero');
+        window.addEventListener('scroll', () => {
+            const past = window.scrollY > heroEl.offsetHeight - 80;
+            nav.classList.toggle('over-hero', !past);
+            nav.classList.toggle('scrolled', past);
+        });
+
+        // ========== REVEAL ==========
+        const ro = new IntersectionObserver(entries => {
+            entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('visible'); });
+        }, { threshold: 0.08, rootMargin: '0px 0px -30px 0px' });
+        document.querySelectorAll('.reveal').forEach(el => ro.observe(el));
+
+        // ========== PORTFOLIO HOVER MOSAIC ==========
+        document.querySelectorAll('.portfolio-item').forEach(item => {
+            let images;
+            try { images = JSON.parse(item.dataset.images); } catch(e) { return; }
+            if (!images || images.length < 3) return;
+
+            item.classList.add('has-mosaic');
+            const mosaic = document.createElement('div');
+            mosaic.className = 'hover-mosaic';
+            for (let i = 0; i < 3; i++) {
+                const img = document.createElement('img');
+                img.src = encodeURI(decodeURI(images[i]));
+                img.alt = '';
+                img.loading = 'lazy';
+                mosaic.appendChild(img);
+            }
+            item.appendChild(mosaic);
+
+            item.addEventListener('mouseenter', () => {
+                const layouts = ['mosaic-a', 'mosaic-b', 'mosaic-c'];
+                mosaic.classList.remove('mosaic-a', 'mosaic-b', 'mosaic-c');
+                mosaic.classList.add(layouts[Math.floor(Math.random() * 3)]);
+            });
+        });
+
+        // ========== SHOW MORE ==========
+        const showMoreBtn = document.getElementById('showMoreBtn');
+        const portfolioMore = document.getElementById('portfolioMore');
+
+        showMoreBtn.addEventListener('click', () => {
+            const isHidden = portfolioMore.style.display === 'none';
+            portfolioMore.style.display = isHidden ? 'block' : 'none';
+            if (currentLang === 'en') {
+                showMoreBtn.textContent = isHidden ? 'Show Less −' : 'Show More +';
+            } else {
+                showMoreBtn.textContent = isHidden ? 'Weniger anzeigen −' : 'Mehr anzeigen +';
+            }
+            if (isHidden) {
+                portfolioMore.querySelectorAll('.reveal').forEach(el => ro.observe(el));
+            }
+        });
+
+        // ========== LIGHTBOX (single-image navigation) ==========
+        const lightbox = document.getElementById('lightbox');
+        const lbContent = document.getElementById('lightboxContent');
+        const lbTitle = document.getElementById('lightboxTitle');
+        const lbDesc = document.getElementById('lightboxDesc');
+        let ci = 0;
+        let currentVisibleItems = [];
+        let currentImages = [];
+        let currentImageIndex = 0;
+
+        function getVisibleItems() {
+            return Array.from(document.querySelectorAll('.portfolio-item')).filter(item => item.offsetParent !== null);
+        }
+
+        document.querySelectorAll('.portfolio-item').forEach(item => {
+            item.addEventListener('click', () => {
+                currentVisibleItems = getVisibleItems();
+                ci = currentVisibleItems.indexOf(item);
+                openLB(item);
+            });
+        });
+
+        function openLB(item) {
+            try { currentImages = JSON.parse(item.dataset.images); } catch(e) { currentImages = [item.querySelector('img').src]; }
+            currentImageIndex = 0;
+            showImage();
+            lightbox.classList.add('active');
+            document.body.style.overflow = 'hidden';
+        }
+
+        function showImage() {
+            lbContent.innerHTML = '';
+            lbContent.className = 'lightbox-content single';
+            const img = document.createElement('img');
+            img.src = encodeURI(decodeURI(currentImages[currentImageIndex]));
+            img.alt = currentVisibleItems[ci]?.dataset.title || '';
+            img.onclick = e => e.stopPropagation();
+            lbContent.appendChild(img);
+
+            const title = currentVisibleItems[ci]?.dataset.title || '';
+            lbTitle.textContent = title;
+            if (currentImages.length > 1) {
+                lbDesc.textContent = (currentImageIndex + 1) + ' / ' + currentImages.length;
+            } else {
+                lbDesc.textContent = currentVisibleItems[ci]?.dataset.desc || '';
+            }
+        }
+
+        function lbNext() {
+            if (currentImageIndex < currentImages.length - 1) {
+                currentImageIndex++;
+                showImage();
+            } else {
+                ci = (ci + 1) % currentVisibleItems.length;
+                openLB(currentVisibleItems[ci]);
+            }
+        }
+
+        function lbPrev() {
+            if (currentImageIndex > 0) {
+                currentImageIndex--;
+                showImage();
+            } else {
+                ci = (ci - 1 + currentVisibleItems.length) % currentVisibleItems.length;
+                const item = currentVisibleItems[ci];
+                try { currentImages = JSON.parse(item.dataset.images); } catch(e) { currentImages = [item.querySelector('img').src]; }
+                currentImageIndex = currentImages.length - 1;
+                showImage();
+                lightbox.classList.add('active');
+                document.body.style.overflow = 'hidden';
+            }
+        }
+
+        function closeLB() { lightbox.classList.remove('active'); document.body.style.overflow = ''; }
+
+        document.getElementById('lightboxClose').addEventListener('click', closeLB);
+        lightbox.addEventListener('click', e => { if (e.target === lightbox) closeLB(); });
+        document.getElementById('lightboxPrev').addEventListener('click', e => { e.stopPropagation(); lbPrev(); });
+        document.getElementById('lightboxNext').addEventListener('click', e => { e.stopPropagation(); lbNext(); });
+        document.addEventListener('keydown', e => {
+            if (!lightbox.classList.contains('active')) return;
+            if (e.key === 'Escape') closeLB();
+            if (e.key === 'ArrowLeft') lbPrev();
+            if (e.key === 'ArrowRight') lbNext();
+        });
+
+        // ========== CONTACT ==========
+        function handleSubmit(e) {
+            e.preventDefault();
+            const f = e.target;
+            window.location.href = `mailto:sm@tapethatcollective.com?subject=${encodeURIComponent('Website: ' + f.name.value)}&body=${encodeURIComponent('From: ' + f.name.value + '\nEmail: ' + f.email.value + '\n\n' + f.message.value)}`;
+        }
+
+        // ========== HERO PARALLAX ==========
+        window.addEventListener('scroll', () => {
+            if (window.scrollY < window.innerHeight) {
+                document.querySelector('.hero-content').style.opacity = 1 - (window.scrollY / window.innerHeight) * 0.8;
+            }
+        });
+    </script>
+</body>
+</html>
