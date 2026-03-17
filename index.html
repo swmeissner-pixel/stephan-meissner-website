@@ -280,31 +280,12 @@
             background: var(--gray-100);
         }
 
-        /* Left column: align to the right (toward center) */
-        .portfolio-grid .portfolio-item:nth-child(odd) { justify-self: end; }
-        /* Right column: align to the left (toward center) */
-        .portfolio-grid .portfolio-item:nth-child(even) { justify-self: start; }
-
-        /* Width variations for organic layout */
-        .portfolio-item.w-100 { width: 100%; }
-        .portfolio-item.w-95 { width: 95%; }
-        .portfolio-item.w-90 { width: 90%; }
-        .portfolio-item.w-85 { width: 85%; }
-        .portfolio-item.w-80 { width: 80%; }
-        .portfolio-item.w-75 { width: 75%; }
-        .portfolio-item.w-70 { width: 70%; }
-        .portfolio-item.w-65 { width: 65%; }
-
         .portfolio-item img {
             width: 100%; height: 100%;
             object-fit: cover;
+            aspect-ratio: 4/3;
             transition: transform 0.8s cubic-bezier(0.16, 1, 0.3, 1);
         }
-
-        /* Individual aspect ratios for organic layout */
-        .portfolio-item.ar-landscape img { aspect-ratio: 16/10; }
-        .portfolio-item.ar-square img { aspect-ratio: 1/1; }
-        .portfolio-item.ar-portrait img { aspect-ratio: 3/4; }
 
         .portfolio-item:hover img { transform: scale(1.05); }
 
@@ -368,8 +349,6 @@
             margin: 0 auto;
         }
 
-        .portfolio-more-grid .portfolio-item:nth-child(odd) { justify-self: end; }
-        .portfolio-more-grid .portfolio-item:nth-child(even) { justify-self: start; }
 
         /* Hover Mosaic */
         .hover-mosaic {
@@ -721,56 +700,139 @@
         .footer-social a { color: var(--gray-400); transition: color 0.3s; }
         .footer-social a:hover { color: var(--gray-900); }
 
-        /* ========== LIGHTBOX ========== */
+        /* ========== CAROUSEL LIGHTBOX ========== */
         .lightbox {
             position: fixed; inset: 0; z-index: 9999;
             background: rgba(255,255,255,0.97);
             display: none;
-            align-items: center; justify-content: center;
-            cursor: zoom-out;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
             backdrop-filter: blur(30px);
+            opacity: 0;
+            transition: opacity 0.3s ease;
         }
 
         .lightbox.active { display: flex; }
-
-        .lightbox-content {
-            display: flex; gap: 8px;
-            max-width: 92vw; max-height: 88vh;
-            align-items: center; justify-content: center;
-        }
-
-        .lightbox-content img { max-height: 85vh; object-fit: contain; cursor: default; }
-        .lightbox-content.single img { max-width: 90vw; }
-        .lightbox-content.multi img { max-width: 45vw; }
+        .lightbox.visible { opacity: 1; }
 
         .lightbox-close {
-            position: absolute; top: 2rem; right: 2rem;
-            background: none; border: none; color: var(--gray-500);
-            font-size: 1.5rem; cursor: pointer; z-index: 10;
-            transition: color 0.3s;
+            position: absolute; top: 1.5rem; right: 1.5rem;
+            background: none; border: none; color: var(--gray-400);
+            font-size: 1.8rem; cursor: pointer; z-index: 10;
+            width: 48px; height: 48px;
+            display: flex; align-items: center; justify-content: center;
+            border-radius: 50%;
+            transition: all 0.3s;
+        }
+        .lightbox-close:hover { color: var(--gray-900); background: rgba(0,0,0,0.05); }
+
+        .carousel-viewport {
+            position: relative;
+            width: 100%;
+            flex: 1;
+            overflow: hidden;
+            display: flex;
+            align-items: center;
+            min-height: 0;
         }
 
-        .lightbox-close:hover { color: var(--gray-900); }
+        .carousel-track {
+            display: flex;
+            transition: transform 0.5s cubic-bezier(0.25, 1, 0.5, 1);
+            height: 100%;
+            align-items: center;
+            will-change: transform;
+        }
+
+        .carousel-track.no-transition { transition: none; }
+
+        .carousel-slide {
+            flex: 0 0 100%;
+            width: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 1rem 4rem;
+            box-sizing: border-box;
+        }
+
+        .carousel-slide img {
+            max-height: 72vh;
+            max-width: 100%;
+            object-fit: contain;
+            user-select: none;
+            -webkit-user-drag: none;
+        }
 
         .lightbox-nav {
             position: absolute; top: 50%; transform: translateY(-50%);
-            background: none; border: none; color: var(--gray-400);
-            font-size: 2rem; cursor: pointer; padding: 1rem; z-index: 10;
-            transition: color 0.3s;
+            background: rgba(255,255,255,0.6); border: none; color: var(--gray-400);
+            font-size: 1.6rem; cursor: pointer;
+            width: 52px; height: 52px;
+            display: flex; align-items: center; justify-content: center;
+            border-radius: 50%; z-index: 10;
+            transition: all 0.3s;
+            backdrop-filter: blur(8px);
+        }
+        .lightbox-nav:hover { color: var(--gray-900); background: rgba(0,0,0,0.06); }
+        .lightbox-prev { left: 1rem; }
+        .lightbox-next { right: 1rem; }
+
+        .lightbox-bottom {
+            width: 100%;
+            padding: 1rem 2rem 1.5rem;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 0.8rem;
+            flex-shrink: 0;
         }
 
-        .lightbox-nav:hover { color: var(--gray-900); }
-        .lightbox-prev { left: 1.5rem; }
-        .lightbox-next { right: 1.5rem; }
-
-        .lightbox-caption {
-            position: absolute; bottom: 2rem;
-            left: 50%; transform: translateX(-50%);
+        .lightbox-info {
+            display: flex;
+            align-items: center;
+            gap: 1.5rem;
             text-align: center;
         }
 
-        .lightbox-caption h3 { font-family: var(--font-heading); font-size: 0.9rem; font-weight: 500; color: var(--gray-800); }
-        .lightbox-caption p { font-size: 0.7rem; color: var(--gray-500); }
+        .lightbox-info h3 {
+            font-family: var(--font-heading);
+            font-size: 0.9rem;
+            font-weight: 500;
+            color: var(--gray-800);
+        }
+
+        .lightbox-counter {
+            font-family: var(--font-heading);
+            font-size: 0.7rem;
+            letter-spacing: 0.1em;
+            color: var(--gray-400);
+        }
+
+        .thumbnail-strip {
+            display: flex;
+            gap: 6px;
+            overflow-x: auto;
+            max-width: 90vw;
+            padding: 4px 0;
+            scrollbar-width: none;
+            -ms-overflow-style: none;
+            scroll-behavior: smooth;
+        }
+        .thumbnail-strip::-webkit-scrollbar { display: none; }
+
+        .thumbnail-strip img {
+            width: 52px; height: 38px;
+            object-fit: cover;
+            cursor: pointer;
+            opacity: 0.4;
+            transition: opacity 0.3s ease;
+            border: 2px solid transparent;
+            flex-shrink: 0;
+        }
+        .thumbnail-strip img:hover { opacity: 0.7; }
+        .thumbnail-strip img.active { opacity: 1; border-color: var(--gray-800); }
 
         /* ========== REVEAL ========== */
         .reveal {
@@ -808,11 +870,6 @@
                 column-gap: 0;
                 row-gap: 20px;
             }
-            .portfolio-grid .portfolio-item,
-            .portfolio-more-grid .portfolio-item {
-                width: 100% !important;
-                justify-self: stretch !important;
-            }
 
             .about-section { padding: 4rem 1.5rem 3rem; }
             .timeline { padding-left: 2rem; }
@@ -829,8 +886,12 @@
             footer { padding: 2rem 1.5rem; flex-direction: column; gap: 1.5rem; text-align: center; }
             .footer-links { flex-wrap: wrap; justify-content: center; }
 
-            .lightbox-content.multi { flex-direction: column; }
-            .lightbox-content.multi img { max-width: 90vw; max-height: 42vh; }
+            .carousel-slide { padding: 1rem 3.5rem; }
+            .carousel-slide img { max-height: 60vh; }
+            .lightbox-nav { width: 40px; height: 40px; font-size: 1.3rem; }
+            .lightbox-prev { left: 0.3rem; }
+            .lightbox-next { right: 0.3rem; }
+            .thumbnail-strip img { width: 40px; height: 28px; }
         }
 
         @media (max-width: 480px) {
@@ -890,42 +951,42 @@
         </div>
         <div class="portfolio-grid" id="portfolioGrid">
 
-            <div class="portfolio-item ar-landscape w-95 reveal" data-title="Tape Splash" data-desc="Immersive room installation" data-images='["images/portfolio/tape%20splash/20190712_TAPE%20THAT_Space_0397(1)_totale.jpg","images/portfolio/tape%20splash/190704_LB_TT_Taiwan-5.jpg","images/portfolio/tape%20splash/190706_LB_TT_Taiwan-20.jpg","images/portfolio/tape%20splash/190706_LB_TT_Taiwan-5.jpg","images/portfolio/tape%20splash/190712_LB_TT_Taiwan-46.jpg","images/portfolio/tape%20splash/1907_LB_TT_Taiwan_2nd%20draft-35.jpg"]'>
+            <div class="portfolio-item reveal" data-title="Tape Splash" data-desc="Immersive room installation" data-images='["images/portfolio/tape%20splash/20190712_TAPE%20THAT_Space_0397(1)_totale.jpg","images/portfolio/tape%20splash/190704_LB_TT_Taiwan-5.jpg","images/portfolio/tape%20splash/190706_LB_TT_Taiwan-20.jpg","images/portfolio/tape%20splash/190706_LB_TT_Taiwan-5.jpg","images/portfolio/tape%20splash/190712_LB_TT_Taiwan-46.jpg","images/portfolio/tape%20splash/1907_LB_TT_Taiwan_2nd%20draft-35.jpg"]'>
                 <img src="images/portfolio/tape%20splash/20190712_TAPE%20THAT_Space_0397(1)_totale.jpg" alt="Tape Splash — immersive room installation with colorful tape" loading="lazy">
                 <div class="overlay"><div class="overlay-text"><h3>Tape Splash</h3><p>Immersive room installation</p></div></div>
             </div>
 
-            <div class="portfolio-item ar-portrait w-70 reveal" data-title="RSA Grid Room" data-desc="Immersive black & white installation" data-images='["images/portfolio/23-rsa-grid-room/TT_RSA_web-26.jpg","images/portfolio/23-rsa-grid-room/RSA_bearbeitet_portfolio-2.jpg","images/portfolio/23-rsa-grid-room/TT_RSA_web-11(2).jpg","images/portfolio/23-rsa-grid-room/TT_RSA_web-7(1).jpg","images/portfolio/23-rsa-grid-room/DSC01912.jpg"]'>
+            <div class="portfolio-item reveal" data-title="RSA Grid Room" data-desc="Immersive black & white installation" data-images='["images/portfolio/23-rsa-grid-room/TT_RSA_web-26.jpg","images/portfolio/23-rsa-grid-room/RSA_bearbeitet_portfolio-2.jpg","images/portfolio/23-rsa-grid-room/TT_RSA_web-11(2).jpg","images/portfolio/23-rsa-grid-room/TT_RSA_web-7(1).jpg","images/portfolio/23-rsa-grid-room/DSC01912.jpg"]'>
                 <img src="images/portfolio/23-rsa-grid-room/TT_RSA_web-26.jpg" alt="RSA Grid Room — immersive black and white tape grid installation" loading="lazy">
                 <div class="overlay"><div class="overlay-text"><h3>RSA Grid Room</h3><p>Immersive b/w installation</p></div></div>
             </div>
 
-            <div class="portfolio-item ar-square w-80 reveal" data-title="Porsche Art Car" data-desc="75 Years Porsche" data-images='["images/portfolio/08-porsche-artcar/insta_caroussel_1x1_0000s_0009s_0003_034_75JahrePorsche_WHITE_FRAME_©Marc Schultheiss_totale.jpg","images/portfolio/08-porsche-artcar/TobiasAde_221228_autofinal-12.jpg","images/portfolio/08-porsche-artcar/175_75JahrePorsche_CARSHOTS_BTS_©Marc Schultheiss.jpg","images/portfolio/08-porsche-artcar/076_75JahrePorsche_CARSHOTS_BTS_©Marc Schultheiss.jpg","images/portfolio/08-porsche-artcar/062_75JahrePorsche_CARSHOTS_BTS_©Marc Schultheiss.jpg","images/portfolio/08-porsche-artcar/031_75JahrePorsche_CARSHOTS_BTS_©Marc Schultheiss.jpg"]'>
+            <div class="portfolio-item reveal" data-title="Porsche Art Car" data-desc="75 Years Porsche" data-images='["images/portfolio/08-porsche-artcar/insta_caroussel_1x1_0000s_0009s_0003_034_75JahrePorsche_WHITE_FRAME_©Marc Schultheiss_totale.jpg","images/portfolio/08-porsche-artcar/TobiasAde_221228_autofinal-12.jpg","images/portfolio/08-porsche-artcar/175_75JahrePorsche_CARSHOTS_BTS_©Marc Schultheiss.jpg","images/portfolio/08-porsche-artcar/076_75JahrePorsche_CARSHOTS_BTS_©Marc Schultheiss.jpg","images/portfolio/08-porsche-artcar/062_75JahrePorsche_CARSHOTS_BTS_©Marc Schultheiss.jpg","images/portfolio/08-porsche-artcar/031_75JahrePorsche_CARSHOTS_BTS_©Marc Schultheiss.jpg"]'>
                 <img src="images/portfolio/08-porsche-artcar/insta_caroussel_1x1_0000s_0009s_0003_034_75JahrePorsche_WHITE_FRAME_%C2%A9Marc%20Schultheiss_totale.jpg" alt="Porsche Art Car — colorful tape art on Porsche 911" loading="lazy">
                 <div class="overlay"><div class="overlay-text"><h3>Porsche Art Car</h3><p>75 Years Porsche</p></div></div>
             </div>
 
-            <div class="portfolio-item ar-portrait w-100 reveal" data-title="Japanisches Palais" data-desc="Dresden" data-images='["images/portfolio/19-japanisches-palais/Tape_Art_Tape_That_Japanisches-Palais_Dresden_2020-18(1)_totale.jpg","images/portfolio/19-japanisches-palais/HQ_japanisches_palais-10(2).jpg","images/portfolio/19-japanisches-palais/Tape_Art_Tape_That_Japanisches-Palais_Dresden_2020-21(1).jpg","images/portfolio/19-japanisches-palais/Tape_Art_Tape_That_Japanisches-Palais_Dresden_2020-25.jpg"]'>
+            <div class="portfolio-item reveal" data-title="Japanisches Palais" data-desc="Dresden" data-images='["images/portfolio/19-japanisches-palais/Tape_Art_Tape_That_Japanisches-Palais_Dresden_2020-18(1)_totale.jpg","images/portfolio/19-japanisches-palais/HQ_japanisches_palais-10(2).jpg","images/portfolio/19-japanisches-palais/Tape_Art_Tape_That_Japanisches-Palais_Dresden_2020-21(1).jpg","images/portfolio/19-japanisches-palais/Tape_Art_Tape_That_Japanisches-Palais_Dresden_2020-25.jpg"]'>
                 <img src="images/portfolio/19-japanisches-palais/Tape_Art_Tape_That_Japanisches-Palais_Dresden_2020-18(1)_totale.jpg" alt="Japanisches Palais — colorful tape mural in historic staircase, Dresden" loading="lazy">
                 <div class="overlay"><div class="overlay-text"><h3>Japanisches Palais</h3><p>Dresden</p></div></div>
             </div>
 
-            <div class="portfolio-item ar-square w-75 reveal" data-title="FiP Installation" data-desc="Site-specific room installation" data-images='["images/portfolio/01-fip-rauminstallation/FiP_printAD-11_totale.jpg","images/portfolio/01-fip-rauminstallation/FiP_printAD-4.jpg","images/portfolio/01-fip-rauminstallation/FiP_printAD-5(1).jpg","images/portfolio/01-fip-rauminstallation/insta_caroussel_1x1_0000s_0006s_0000_FiP_printAD12.jpg","images/portfolio/01-fip-rauminstallation/insta_caroussel_1x1_0000s_0006s_0001_FiP_printAD-2.jpg"]'>
+            <div class="portfolio-item reveal" data-title="FiP Installation" data-desc="Site-specific room installation" data-images='["images/portfolio/01-fip-rauminstallation/FiP_printAD-11_totale.jpg","images/portfolio/01-fip-rauminstallation/FiP_printAD-4.jpg","images/portfolio/01-fip-rauminstallation/FiP_printAD-5(1).jpg","images/portfolio/01-fip-rauminstallation/insta_caroussel_1x1_0000s_0006s_0000_FiP_printAD12.jpg","images/portfolio/01-fip-rauminstallation/insta_caroussel_1x1_0000s_0006s_0001_FiP_printAD-2.jpg"]'>
                 <img src="images/portfolio/01-fip-rauminstallation/FiP_printAD-11_totale.jpg" alt="FiP Installation — orange and blue room installation with columns" loading="lazy">
                 <div class="overlay"><div class="overlay-text"><h3>FiP Installation</h3><p>Room installation</p></div></div>
             </div>
 
-            <div class="portfolio-item ar-landscape w-95 reveal" data-title="BVG Pride U-Bahn" data-desc="Rainbow tape, Berlin subway" data-images='["images/portfolio/26-bvg-pride-ubahn/DSCF7247(1).jpg","images/portfolio/26-bvg-pride-ubahn/DSCF7150.jpg","images/portfolio/26-bvg-pride-ubahn/DSCF7162.jpg"]'>
+            <div class="portfolio-item reveal" data-title="BVG Pride U-Bahn" data-desc="Rainbow tape, Berlin subway" data-images='["images/portfolio/26-bvg-pride-ubahn/DSCF7247(1).jpg","images/portfolio/26-bvg-pride-ubahn/DSCF7150.jpg","images/portfolio/26-bvg-pride-ubahn/DSCF7162.jpg"]'>
                 <img src="images/portfolio/26-bvg-pride-ubahn/DSCF7247(1).jpg" alt="BVG Pride U-Bahn — rainbow tape in Berlin subway station" loading="lazy">
                 <div class="overlay"><div class="overlay-text"><h3>BVG Pride U-Bahn</h3><p>Berlin subway</p></div></div>
             </div>
 
-            <div class="portfolio-item ar-square w-65 reveal" data-title="Coco Cologne" data-desc="Black & white stripes" data-images='["images/portfolio/29-corporate-bw-installation/foyer_01.jpg","images/portfolio/29-corporate-bw-installation/haupteingang_02.jpg","images/portfolio/29-corporate-bw-installation/20231011_094618.jpg","images/portfolio/29-corporate-bw-installation/20231011_100949.jpg"]'>
+            <div class="portfolio-item reveal" data-title="Coco Cologne" data-desc="Black & white stripes" data-images='["images/portfolio/29-corporate-bw-installation/foyer_01.jpg","images/portfolio/29-corporate-bw-installation/haupteingang_02.jpg","images/portfolio/29-corporate-bw-installation/20231011_094618.jpg","images/portfolio/29-corporate-bw-installation/20231011_100949.jpg"]'>
                 <img src="images/portfolio/29-corporate-bw-installation/foyer_01.jpg" alt="Coco Cologne — black and white tape stripes installation" loading="lazy">
                 <div class="overlay"><div class="overlay-text"><h3>Coco Cologne</h3><p>Black & white</p></div></div>
             </div>
 
-            <div class="portfolio-item ar-portrait w-85 reveal" data-title="Tape Tesseract" data-desc="Canvas series" data-images='["images/portfolio/31-tape-tesseract/IMG_8130_totale.jpg","images/portfolio/31-tape-tesseract/IMG_8108.JPG","images/portfolio/31-tape-tesseract/IMG_8129.jpg","images/portfolio/31-tape-tesseract/IMG_8131.jpg","images/portfolio/31-tape-tesseract/IMG_8132.jpg"]'>
+            <div class="portfolio-item reveal" data-title="Tape Tesseract" data-desc="Canvas series" data-images='["images/portfolio/31-tape-tesseract/IMG_8130_totale.jpg","images/portfolio/31-tape-tesseract/IMG_8108.JPG","images/portfolio/31-tape-tesseract/IMG_8129.jpg","images/portfolio/31-tape-tesseract/IMG_8131.jpg","images/portfolio/31-tape-tesseract/IMG_8132.jpg"]'>
                 <img src="images/portfolio/31-tape-tesseract/IMG_8130_totale.jpg" alt="Tape Tesseract — geometric tape art canvas series" loading="lazy">
                 <div class="overlay"><div class="overlay-text"><h3>Tape Tesseract</h3><p>Canvas series</p></div></div>
             </div>
@@ -939,82 +1000,82 @@
         <div id="portfolioMore" style="display:none;">
             <div class="portfolio-more-grid">
 
-                    <div class="portfolio-item ar-landscape w-90 reveal" data-title="Taiwan Exhibition" data-desc="Songshan Cultural Park, Taipei" data-images='["images/portfolio/03-taiwan-exhibition/HQ_Taiwan2_Installationen-67.jpg","images/portfolio/03-taiwan-exhibition/HQ_Taiwan2_Installationen-60.jpg","images/portfolio/03-taiwan-exhibition/HQ_Taiwan2_Installationen-66.jpg","images/portfolio/03-taiwan-exhibition/190712_LB_TT_Taiwan-38.jpg","images/portfolio/03-taiwan-exhibition/190712_LB_TT_Taiwan-24.jpg","images/portfolio/03-taiwan-exhibition/190708_LB_TT_Taiwan-16.jpg","images/portfolio/03-taiwan-exhibition/190709_LB_TT_Taiwan-12.jpg","images/portfolio/03-taiwan-exhibition/190709_LB_TT_Taiwan-14.jpg","images/portfolio/03-taiwan-exhibition/1907_LB_TT_Taiwan_2nd%20draft-38.jpg","images/portfolio/03-taiwan-exhibition/20190712_TAPE%20bearbeitet%202026.jpg"]'>
+                    <div class="portfolio-item reveal" data-title="Taiwan Exhibition" data-desc="Songshan Cultural Park, Taipei" data-images='["images/portfolio/03-taiwan-exhibition/HQ_Taiwan2_Installationen-67.jpg","images/portfolio/03-taiwan-exhibition/HQ_Taiwan2_Installationen-60.jpg","images/portfolio/03-taiwan-exhibition/HQ_Taiwan2_Installationen-66.jpg","images/portfolio/03-taiwan-exhibition/190712_LB_TT_Taiwan-38.jpg","images/portfolio/03-taiwan-exhibition/190712_LB_TT_Taiwan-24.jpg","images/portfolio/03-taiwan-exhibition/190708_LB_TT_Taiwan-16.jpg","images/portfolio/03-taiwan-exhibition/190709_LB_TT_Taiwan-12.jpg","images/portfolio/03-taiwan-exhibition/190709_LB_TT_Taiwan-14.jpg","images/portfolio/03-taiwan-exhibition/1907_LB_TT_Taiwan_2nd%20draft-38.jpg","images/portfolio/03-taiwan-exhibition/20190712_TAPE%20bearbeitet%202026.jpg"]'>
                         <img src="images/portfolio/03-taiwan-exhibition/HQ_Taiwan2_Installationen-67.jpg" alt="Taiwan Exhibition — large-scale colorful tape installation, Songshan Cultural Park" loading="lazy">
                         <div class="overlay"><div class="overlay-text"><h3>Taiwan Exhibition</h3><p>Songshan Cultural Park, Taipei</p></div></div>
                     </div>
 
-                    <div class="portfolio-item ar-square w-65 reveal" data-title="Illuseum Grid Room" data-desc="Immersive black & white grid" data-images='["images/portfolio/02-illuseum-grid-room/HQ_illuseum-10_totale.jpg","images/portfolio/02-illuseum-grid-room/HQ_illuseum-9(1).jpg","images/portfolio/02-illuseum-grid-room/HQ_illuseum-11.jpg"]'>
+                    <div class="portfolio-item reveal" data-title="Illuseum Grid Room" data-desc="Immersive black & white grid" data-images='["images/portfolio/02-illuseum-grid-room/HQ_illuseum-10_totale.jpg","images/portfolio/02-illuseum-grid-room/HQ_illuseum-9(1).jpg","images/portfolio/02-illuseum-grid-room/HQ_illuseum-11.jpg"]'>
                         <img src="images/portfolio/02-illuseum-grid-room/HQ_illuseum-10_totale.jpg" alt="Illuseum Grid Room — immersive black and white grid room" loading="lazy">
                         <div class="overlay"><div class="overlay-text"><h3>Illuseum Grid Room</h3><p>Immersive b/w grid</p></div></div>
                     </div>
 
-                    <div class="portfolio-item ar-landscape w-80 reveal" data-title="Artcarden" data-desc="Room-filling installation, Berlin" data-images='["images/portfolio/04-artcarden-installation/artcaden%20nachz(1)_totale.jpg","images/portfolio/04-artcarden-installation/artcarden-58.jpg","images/portfolio/04-artcarden-installation/tape_that_tape_art_camouflage_berlin_artcaden_exhibition-22.jpg","images/portfolio/04-artcarden-installation/tape_that_tape_art_camouflage_berlin_artcaden_exhibition-24.jpg","images/portfolio/04-artcarden-installation/Artcaden_2017 (175).jpg","images/portfolio/04-artcarden-installation/artcaden nachz(1).jpg"]'>
+                    <div class="portfolio-item reveal" data-title="Artcarden" data-desc="Room-filling installation, Berlin" data-images='["images/portfolio/04-artcarden-installation/artcaden%20nachz(1)_totale.jpg","images/portfolio/04-artcarden-installation/artcarden-58.jpg","images/portfolio/04-artcarden-installation/tape_that_tape_art_camouflage_berlin_artcaden_exhibition-22.jpg","images/portfolio/04-artcarden-installation/tape_that_tape_art_camouflage_berlin_artcaden_exhibition-24.jpg","images/portfolio/04-artcarden-installation/Artcaden_2017 (175).jpg","images/portfolio/04-artcarden-installation/artcaden nachz(1).jpg"]'>
                         <img src="images/portfolio/04-artcarden-installation/artcaden%20nachz(1)_totale.jpg" alt="Artcarden — explosive colorful room-filling tape installation" loading="lazy">
                         <div class="overlay"><div class="overlay-text"><h3>Artcarden</h3><p>Room installation, Berlin</p></div></div>
                     </div>
 
-                    <div class="portfolio-item ar-landscape w-100 reveal" data-title="Sleek × Cadillac" data-desc="Art Car" data-images='["images/portfolio/05-sleek-cadillac/Cadillac_Sleek_PopUp_RAW_367_totale.jpg","images/portfolio/05-sleek-cadillac/sleek_cadillac_print.jpg","images/portfolio/05-sleek-cadillac/sleek_cadillac_print-2.jpg","images/portfolio/05-sleek-cadillac/sleek_cadillac_print-3(1).jpg","images/portfolio/05-sleek-cadillac/Cadillac_Sleek_PopUp_RAW_368.jpg","images/portfolio/05-sleek-cadillac/Cadillac_Sleek_PopUp_RAW_369.jpg"]'>
+                    <div class="portfolio-item reveal" data-title="Sleek × Cadillac" data-desc="Art Car" data-images='["images/portfolio/05-sleek-cadillac/Cadillac_Sleek_PopUp_RAW_367_totale.jpg","images/portfolio/05-sleek-cadillac/sleek_cadillac_print.jpg","images/portfolio/05-sleek-cadillac/sleek_cadillac_print-2.jpg","images/portfolio/05-sleek-cadillac/sleek_cadillac_print-3(1).jpg","images/portfolio/05-sleek-cadillac/Cadillac_Sleek_PopUp_RAW_368.jpg","images/portfolio/05-sleek-cadillac/Cadillac_Sleek_PopUp_RAW_369.jpg"]'>
                         <img src="images/portfolio/05-sleek-cadillac/Cadillac_Sleek_PopUp_RAW_367_totale.jpg" alt="Sleek × Cadillac — black and white tape art car" loading="lazy">
                         <div class="overlay"><div class="overlay-text"><h3>Sleek × Cadillac</h3><p>Art Car</p></div></div>
                     </div>
 
-                    <div class="portfolio-item ar-square w-60 reveal" data-title="Various" data-desc="Selected works" data-images='["images/portfolio/09-moebius-galerie/Möbius_totale_print-2.jpg","images/portfolio/09-moebius-galerie/DSC00086.jpg","images/portfolio/24-various/1810_lb_TapeThat_Festival_of_Lights-10(1).jpg","images/portfolio/24-various/TAATW_USA_web-31.jpg","images/portfolio/24-various/2018_Tape Art Around The World_Guatemala City(1).jpg","images/portfolio/28-corridor-installation/DSCF1152.jpg"]'>
+                    <div class="portfolio-item reveal" data-title="Various" data-desc="Selected works" data-images='["images/portfolio/09-moebius-galerie/Möbius_totale_print-2.jpg","images/portfolio/09-moebius-galerie/DSC00086.jpg","images/portfolio/24-various/1810_lb_TapeThat_Festival_of_Lights-10(1).jpg","images/portfolio/24-various/TAATW_USA_web-31.jpg","images/portfolio/24-various/2018_Tape Art Around The World_Guatemala City(1).jpg","images/portfolio/28-corridor-installation/DSCF1152.jpg"]'>
                         <img src="images/portfolio/24-various/TAATW_USA_web-31.jpg" alt="Various — selected works from around the world" loading="lazy">
                         <div class="overlay"><div class="overlay-text"><h3>Various</h3><p data-en="Selected works" data-de="Ausgewählte Arbeiten">Selected works</p></div></div>
                     </div>
 
-                    <div class="portfolio-item ar-square w-85 reveal" data-title="Formula E Art Car" data-desc="Tape art race car" data-images='["images/portfolio/27-formula-e-artcar/IMG_1792_bearbeitet.jpg","images/portfolio/27-formula-e-artcar/TT_Formel_E_making_of-2.jpg","images/portfolio/27-formula-e-artcar/TT_Formel_E_making_of.jpg","images/portfolio/27-formula-e-artcar/e0f1f80a-837d-403e-94cf-9e0e85005890.jpg"]'>
+                    <div class="portfolio-item reveal" data-title="Formula E Art Car" data-desc="Tape art race car" data-images='["images/portfolio/27-formula-e-artcar/IMG_1792_bearbeitet.jpg","images/portfolio/27-formula-e-artcar/TT_Formel_E_making_of-2.jpg","images/portfolio/27-formula-e-artcar/TT_Formel_E_making_of.jpg","images/portfolio/27-formula-e-artcar/e0f1f80a-837d-403e-94cf-9e0e85005890.jpg"]'>
                         <img src="images/portfolio/27-formula-e-artcar/IMG_1792_bearbeitet.jpg" alt="Formula E Art Car — blue tape art race car" loading="lazy">
                         <div class="overlay"><div class="overlay-text"><h3>Formula E Art Car</h3><p>Race car</p></div></div>
                     </div>
 
-                    <div class="portfolio-item ar-portrait w-90 reveal" data-title="Freiraum" data-desc="Black & white, geometric" data-images='["images/portfolio/22-freiraum-bw/HQ_freiraum-7(1)_totale.jpg","images/portfolio/22-freiraum-bw/HQ_freiraum.jpg","images/portfolio/22-freiraum-bw/HQ_freiraum-4(1).jpg","images/portfolio/22-freiraum-bw/HQ_freiraum-6.jpg","images/portfolio/22-freiraum-bw/HQ_freiraum-8(2).jpg"]'>
+                    <div class="portfolio-item reveal" data-title="Freiraum" data-desc="Black & white, geometric" data-images='["images/portfolio/22-freiraum-bw/HQ_freiraum-7(1)_totale.jpg","images/portfolio/22-freiraum-bw/HQ_freiraum.jpg","images/portfolio/22-freiraum-bw/HQ_freiraum-4(1).jpg","images/portfolio/22-freiraum-bw/HQ_freiraum-6.jpg","images/portfolio/22-freiraum-bw/HQ_freiraum-8(2).jpg"]'>
                         <img src="images/portfolio/22-freiraum-bw/HQ_freiraum-7(1)_totale.jpg" alt="Freiraum — geometric black and white wall installation" loading="lazy">
                         <div class="overlay"><div class="overlay-text"><h3>Freiraum</h3><p>Geometric b/w</p></div></div>
                     </div>
 
-                    <div class="portfolio-item ar-landscape w-100 reveal" data-title="Game Over / Sweetspot" data-desc="Room installation with text & mirrors" data-images='["images/portfolio/10-game-over-sweetspot/GO_SweetSpot2_druck(1)_totale.jpg","images/portfolio/10-game-over-sweetspot/Tape-That_Tape-Art_Game-Over-Berlin_2022-2.jpg","images/portfolio/10-game-over-sweetspot/HQ_GameOver_Anamorphose(1).jpg","images/portfolio/10-game-over-sweetspot/HQ_GameOver_Anamorphose-2(1).jpg","images/portfolio/10-game-over-sweetspot/HQ_GameOver_Anamorphose-3(1)(1).jpg"]'>
+                    <div class="portfolio-item reveal" data-title="Game Over / Sweetspot" data-desc="Room installation with text & mirrors" data-images='["images/portfolio/10-game-over-sweetspot/GO_SweetSpot2_druck(1)_totale.jpg","images/portfolio/10-game-over-sweetspot/Tape-That_Tape-Art_Game-Over-Berlin_2022-2.jpg","images/portfolio/10-game-over-sweetspot/HQ_GameOver_Anamorphose(1).jpg","images/portfolio/10-game-over-sweetspot/HQ_GameOver_Anamorphose-2(1).jpg","images/portfolio/10-game-over-sweetspot/HQ_GameOver_Anamorphose-3(1)(1).jpg"]'>
                         <img src="images/portfolio/10-game-over-sweetspot/GO_SweetSpot2_druck(1)_totale.jpg" alt="Game Over / Sweetspot — room installation with text and mirrors" loading="lazy">
                         <div class="overlay"><div class="overlay-text"><h3>Game Over / Sweetspot</h3><p>Text & mirrors</p></div></div>
                     </div>
 
-                    <div class="portfolio-item ar-square w-65 reveal" data-title="Roland Berger" data-desc="Corporate mural" data-images='["images/portfolio/11-roland-berger/Roland Berger_fotos_druck_AD-53.jpg","images/portfolio/11-roland-berger/Roland_Berger_AD_Fotos-3.jpg","images/portfolio/11-roland-berger/Roland_Berger_AD_Fotos-9.jpg"]'>
+                    <div class="portfolio-item reveal" data-title="Roland Berger" data-desc="Corporate mural" data-images='["images/portfolio/11-roland-berger/Roland Berger_fotos_druck_AD-53.jpg","images/portfolio/11-roland-berger/Roland_Berger_AD_Fotos-3.jpg","images/portfolio/11-roland-berger/Roland_Berger_AD_Fotos-9.jpg"]'>
                         <img src="images/portfolio/11-roland-berger/Roland%20Berger_fotos_druck_AD-53.jpg" alt="Roland Berger — corporate tape art mural" loading="lazy">
                         <div class="overlay"><div class="overlay-text"><h3>Roland Berger</h3><p>Corporate mural</p></div></div>
                     </div>
 
-                    <div class="portfolio-item ar-portrait w-80 reveal" data-title="Popcorn Hong Kong" data-desc="Shopping mall installation" data-images='["images/portfolio/12-popcorn-hongkong/TT_Popcorn_HK_Auswahl_druck-staircase_DB_druck(1)_totale.jpg","images/portfolio/12-popcorn-hongkong/TT_Popcorn_HK_Auswahl_druck-3.jpg","images/portfolio/12-popcorn-hongkong/TT_Popcorn_HK_Auswahl_druck-32-test2.jpg","images/portfolio/12-popcorn-hongkong/TT_Popcorn_HK_Auswahl_druck-35.jpg","images/portfolio/12-popcorn-hongkong/TT_Popcorn_HK_Auswahl_druck-37.jpg"]'>
+                    <div class="portfolio-item reveal" data-title="Popcorn Hong Kong" data-desc="Shopping mall installation" data-images='["images/portfolio/12-popcorn-hongkong/TT_Popcorn_HK_Auswahl_druck-staircase_DB_druck(1)_totale.jpg","images/portfolio/12-popcorn-hongkong/TT_Popcorn_HK_Auswahl_druck-3.jpg","images/portfolio/12-popcorn-hongkong/TT_Popcorn_HK_Auswahl_druck-32-test2.jpg","images/portfolio/12-popcorn-hongkong/TT_Popcorn_HK_Auswahl_druck-35.jpg","images/portfolio/12-popcorn-hongkong/TT_Popcorn_HK_Auswahl_druck-37.jpg"]'>
                         <img src="images/portfolio/12-popcorn-hongkong/TT_Popcorn_HK_Auswahl_druck-staircase_DB_druck(1)_totale.jpg" alt="Popcorn Hong Kong — white tape installation in shopping mall" loading="lazy">
                         <div class="overlay"><div class="overlay-text"><h3>Popcorn Hong Kong</h3><p>Shopping mall installation</p></div></div>
                     </div>
 
-                    <div class="portfolio-item ar-landscape w-85 reveal" data-title="Trade Desk" data-desc="Corporate installation" data-images='["images/portfolio/20-trade-desk/trade desk_portfolio kandidat2.jpg","images/portfolio/20-trade-desk/HQ_trade_desk-2.jpg","images/portfolio/20-trade-desk/tradedesk_hochkant_portfolio kandidat.jpg"]'>
+                    <div class="portfolio-item reveal" data-title="Trade Desk" data-desc="Corporate installation" data-images='["images/portfolio/20-trade-desk/trade desk_portfolio kandidat2.jpg","images/portfolio/20-trade-desk/HQ_trade_desk-2.jpg","images/portfolio/20-trade-desk/tradedesk_hochkant_portfolio kandidat.jpg"]'>
                         <img src="images/portfolio/20-trade-desk/trade%20desk_portfolio%20kandidat2.jpg" alt="Trade Desk — corporate tape art glass installation" loading="lazy">
                         <div class="overlay"><div class="overlay-text"><h3>Trade Desk</h3><p>Corporate installation</p></div></div>
                     </div>
 
-                    <div class="portfolio-item ar-landscape w-100 reveal" data-title="Berlin Mural" data-desc="Large-scale mural" data-images='["images/portfolio/14-berlin-mural/1805_LB_TT_Berlin Mural_PRINT-16(2)_totale.jpg","images/portfolio/14-berlin-mural/1805_LB_TT_Berlin Mural_PRINT-15.jpg","images/portfolio/14-berlin-mural/1805_LB_Tape That_Berlin Mural Festival_PRINT-1.jpg","images/portfolio/14-berlin-mural/Tape Art_Tape That_Berlin_Mural_Fest-7.jpg"]'>
+                    <div class="portfolio-item reveal" data-title="Berlin Mural" data-desc="Large-scale mural" data-images='["images/portfolio/14-berlin-mural/1805_LB_TT_Berlin Mural_PRINT-16(2)_totale.jpg","images/portfolio/14-berlin-mural/1805_LB_TT_Berlin Mural_PRINT-15.jpg","images/portfolio/14-berlin-mural/1805_LB_Tape That_Berlin Mural Festival_PRINT-1.jpg","images/portfolio/14-berlin-mural/Tape Art_Tape That_Berlin_Mural_Fest-7.jpg"]'>
                         <img src="images/portfolio/14-berlin-mural/1805_LB_TT_Berlin%20Mural_PRINT-16(2)_totale.jpg" alt="Berlin Mural — large-scale colorful tape art mural" loading="lazy">
                         <div class="overlay"><div class="overlay-text"><h3>Berlin Mural</h3><p>Large-scale, Berlin</p></div></div>
                     </div>
 
-                    <div class="portfolio-item ar-square w-60 reveal" data-title="Parkhaus Mural" data-desc="Parking garage installation" data-images='["images/portfolio/25-parkhaus-mural/IMG_20200910_122019(4).jpg","images/portfolio/25-parkhaus-mural/IMG_20200910_122019(3).jpg","images/portfolio/25-parkhaus-mural/IMG_20200910_122100.jpg"]'>
+                    <div class="portfolio-item reveal" data-title="Parkhaus Mural" data-desc="Parking garage installation" data-images='["images/portfolio/25-parkhaus-mural/IMG_20200910_122019(4).jpg","images/portfolio/25-parkhaus-mural/IMG_20200910_122019(3).jpg","images/portfolio/25-parkhaus-mural/IMG_20200910_122100.jpg"]'>
                         <img src="images/portfolio/25-parkhaus-mural/IMG_20200910_122019(4).jpg" alt="Parkhaus Mural — abstract tape art in parking garage" loading="lazy">
                         <div class="overlay"><div class="overlay-text"><h3>Parkhaus Mural</h3><p>Parking garage</p></div></div>
                     </div>
 
-                    <div class="portfolio-item ar-landscape w-90 reveal" data-title="Tape Art Convention" data-desc="International tape art exhibition, Berlin" data-images='["images/portfolio/15-tape-art-convention/Tape_Art_Convention_Tape_That_Berlin-3_totale.jpg","images/portfolio/15-tape-art-convention/Tape_Art_Convention_Tape_That_Berlin.jpg","images/portfolio/15-tape-art-convention/2018_Gefuehl_325x200cm_Stephan-Meissner.jpg","images/portfolio/15-tape-art-convention/Tape Art Convention 2018_Artist_Stephan Meissner_photo by Laurenz H. Bostedt.jpg"]'>
+                    <div class="portfolio-item reveal" data-title="Tape Art Convention" data-desc="International tape art exhibition, Berlin" data-images='["images/portfolio/15-tape-art-convention/Tape_Art_Convention_Tape_That_Berlin-3_totale.jpg","images/portfolio/15-tape-art-convention/Tape_Art_Convention_Tape_That_Berlin.jpg","images/portfolio/15-tape-art-convention/2018_Gefuehl_325x200cm_Stephan-Meissner.jpg","images/portfolio/15-tape-art-convention/Tape Art Convention 2018_Artist_Stephan Meissner_photo by Laurenz H. Bostedt.jpg"]'>
                         <img src="images/portfolio/15-tape-art-convention/Tape_Art_Convention_Tape_That_Berlin-3_totale.jpg" alt="Tape Art Convention — international tape art exhibition, Berlin" loading="lazy">
                         <div class="overlay"><div class="overlay-text"><h3>Tape Art Convention</h3><p>International exhibition, Berlin</p></div></div>
                     </div>
 
-                    <div class="portfolio-item ar-square w-90 reveal" data-title="MT Factory Tour" data-desc="Japan 2018" data-images='["images/portfolio/13-mt-factory-tour-japan/portfolio_bearbeitet_druck_AD-55(1)_totale.jpg","images/portfolio/13-mt-factory-tour-japan/mt_factory tour 2018_druck.jpg","images/portfolio/13-mt-factory-tour-japan/mt_factory tour 2018_druck-2.jpg","images/portfolio/13-mt-factory-tour-japan/mt_factory tour 2018_druck-3.jpg","images/portfolio/13-mt-factory-tour-japan/mt_factory tour 2018_druck-5.jpg","images/portfolio/13-mt-factory-tour-japan/mt_factory tour 2018_druck-6.jpg"]'>
+                    <div class="portfolio-item reveal" data-title="MT Factory Tour" data-desc="Japan 2018" data-images='["images/portfolio/13-mt-factory-tour-japan/portfolio_bearbeitet_druck_AD-55(1)_totale.jpg","images/portfolio/13-mt-factory-tour-japan/mt_factory tour 2018_druck.jpg","images/portfolio/13-mt-factory-tour-japan/mt_factory tour 2018_druck-2.jpg","images/portfolio/13-mt-factory-tour-japan/mt_factory tour 2018_druck-3.jpg","images/portfolio/13-mt-factory-tour-japan/mt_factory tour 2018_druck-5.jpg","images/portfolio/13-mt-factory-tour-japan/mt_factory tour 2018_druck-6.jpg"]'>
                         <img src="images/portfolio/13-mt-factory-tour-japan/portfolio_bearbeitet_druck_AD-55(1)_totale.jpg" alt="MT Factory Tour — colorful tape art installation, Japan 2018" loading="lazy">
                         <div class="overlay"><div class="overlay-text"><h3>MT Factory Tour</h3><p>Japan</p></div></div>
                     </div>
 
-                    <div class="portfolio-item ar-square w-75 reveal" data-title="Anamorphose" data-desc="Anamorphic tape installation" data-images='["images/portfolio/Anamorphose/HQ_Taiwan2_Installationen-60_totale.jpg","images/portfolio/Anamorphose/HQ_Taiwan2_Installationen-66.jpg","images/portfolio/Anamorphose/HQ_Taiwan2_Installationen-67.jpg"]'>
+                    <div class="portfolio-item reveal" data-title="Anamorphose" data-desc="Anamorphic tape installation" data-images='["images/portfolio/Anamorphose/HQ_Taiwan2_Installationen-60_totale.jpg","images/portfolio/Anamorphose/HQ_Taiwan2_Installationen-66.jpg","images/portfolio/Anamorphose/HQ_Taiwan2_Installationen-67.jpg"]'>
                         <img src="images/portfolio/Anamorphose/HQ_Taiwan2_Installationen-60_totale.jpg" alt="Anamorphose — anamorphic tape art installation" loading="lazy">
                         <div class="overlay"><div class="overlay-text"><h3>Anamorphose</h3><p>Anamorphic installation</p></div></div>
                     </div>
@@ -1155,13 +1216,21 @@
         </div>
     </footer>
 
-    <!-- Lightbox -->
+    <!-- Carousel Lightbox -->
     <div class="lightbox" id="lightbox">
-        <button class="lightbox-close" id="lightboxClose">×</button>
-        <button class="lightbox-nav lightbox-prev" id="lightboxPrev">‹</button>
-        <button class="lightbox-nav lightbox-next" id="lightboxNext">›</button>
-        <div class="lightbox-content" id="lightboxContent"></div>
-        <div class="lightbox-caption"><h3 id="lightboxTitle"></h3><p id="lightboxDesc"></p></div>
+        <button class="lightbox-close" id="lightboxClose">&#x2715;</button>
+        <div class="carousel-viewport">
+            <button class="lightbox-nav lightbox-prev" id="lightboxPrev">&#8249;</button>
+            <button class="lightbox-nav lightbox-next" id="lightboxNext">&#8250;</button>
+            <div class="carousel-track" id="carouselTrack"></div>
+        </div>
+        <div class="lightbox-bottom">
+            <div class="lightbox-info">
+                <h3 id="lightboxTitle"></h3>
+                <span class="lightbox-counter" id="lightboxCounter"></span>
+            </div>
+            <div class="thumbnail-strip" id="thumbnailStrip"></div>
+        </div>
     </div>
 
     <!-- JSON-LD Structured Data -->
@@ -1298,15 +1367,18 @@
             }
         });
 
-        // ========== LIGHTBOX (single-image navigation) ==========
+        // ========== CAROUSEL LIGHTBOX ==========
         const lightbox = document.getElementById('lightbox');
-        const lbContent = document.getElementById('lightboxContent');
+        const carouselTrack = document.getElementById('carouselTrack');
         const lbTitle = document.getElementById('lightboxTitle');
-        const lbDesc = document.getElementById('lightboxDesc');
+        const lbCounter = document.getElementById('lightboxCounter');
+        const thumbnailStrip = document.getElementById('thumbnailStrip');
         let ci = 0;
         let currentVisibleItems = [];
         let currentImages = [];
         let currentImageIndex = 0;
+        let touchStartX = 0;
+        let touchEndX = 0;
 
         function getVisibleItems() {
             return Array.from(document.querySelectorAll('.portfolio-item')).filter(item => item.offsetParent !== null);
@@ -1323,34 +1395,94 @@
         function openLB(item) {
             try { currentImages = JSON.parse(item.dataset.images); } catch(e) { currentImages = [item.querySelector('img').src]; }
             currentImageIndex = 0;
-            showImage();
+            buildCarousel();
             lightbox.classList.add('active');
+            requestAnimationFrame(() => requestAnimationFrame(() => lightbox.classList.add('visible')));
             document.body.style.overflow = 'hidden';
         }
 
-        function showImage() {
-            lbContent.innerHTML = '';
-            lbContent.className = 'lightbox-content single';
-            const img = document.createElement('img');
-            img.src = encodeURI(decodeURI(currentImages[currentImageIndex]));
-            img.alt = currentVisibleItems[ci]?.dataset.title || '';
-            img.onclick = e => e.stopPropagation();
-            lbContent.appendChild(img);
+        function buildCarousel() {
+            // Build slides
+            carouselTrack.innerHTML = '';
+            currentImages.forEach((src, i) => {
+                const slide = document.createElement('div');
+                slide.className = 'carousel-slide';
+                const img = document.createElement('img');
+                img.src = encodeURI(decodeURI(src));
+                img.alt = (currentVisibleItems[ci]?.dataset.title || '') + ' ' + (i + 1);
+                img.draggable = false;
+                slide.appendChild(img);
+                carouselTrack.appendChild(slide);
+            });
 
-            const title = currentVisibleItems[ci]?.dataset.title || '';
-            lbTitle.textContent = title;
-            if (currentImages.length > 1) {
-                lbDesc.textContent = (currentImageIndex + 1) + ' / ' + currentImages.length;
-            } else {
-                lbDesc.textContent = currentVisibleItems[ci]?.dataset.desc || '';
+            // Build thumbnails
+            thumbnailStrip.innerHTML = '';
+            currentImages.forEach((src, i) => {
+                const thumb = document.createElement('img');
+                thumb.src = encodeURI(decodeURI(src));
+                thumb.alt = '';
+                thumb.draggable = false;
+                if (i === 0) thumb.classList.add('active');
+                thumb.addEventListener('click', (e) => {
+                    e.stopPropagation();
+                    goToImage(i);
+                });
+                thumbnailStrip.appendChild(thumb);
+            });
+
+            // Preload adjacent images
+            preloadAdjacent();
+
+            updateCarousel(false);
+        }
+
+        function updateCarousel(animate) {
+            if (!animate) carouselTrack.classList.add('no-transition');
+            carouselTrack.style.transform = `translateX(-${currentImageIndex * 100}%)`;
+            if (!animate) {
+                // Force reflow then re-enable transition
+                carouselTrack.offsetHeight;
+                carouselTrack.classList.remove('no-transition');
             }
+
+            // Update title & counter
+            lbTitle.textContent = currentVisibleItems[ci]?.dataset.title || '';
+            lbCounter.textContent = currentImages.length > 1 ? (currentImageIndex + 1) + ' / ' + currentImages.length : '';
+
+            // Update thumbnail active state
+            const thumbs = thumbnailStrip.querySelectorAll('img');
+            thumbs.forEach((t, i) => t.classList.toggle('active', i === currentImageIndex));
+
+            // Scroll active thumbnail into view
+            if (thumbs[currentImageIndex]) {
+                thumbs[currentImageIndex].scrollIntoView({ behavior: 'smooth', block: 'nearest', inline: 'center' });
+            }
+
+            preloadAdjacent();
+        }
+
+        function preloadAdjacent() {
+            // Preload next and previous images
+            [currentImageIndex - 1, currentImageIndex + 1].forEach(idx => {
+                if (idx >= 0 && idx < currentImages.length) {
+                    const img = new Image();
+                    img.src = encodeURI(decodeURI(currentImages[idx]));
+                }
+            });
+        }
+
+        function goToImage(idx) {
+            if (idx === currentImageIndex) return;
+            currentImageIndex = idx;
+            updateCarousel(true);
         }
 
         function lbNext() {
             if (currentImageIndex < currentImages.length - 1) {
                 currentImageIndex++;
-                showImage();
+                updateCarousel(true);
             } else {
+                // Go to next project
                 ci = (ci + 1) % currentVisibleItems.length;
                 openLB(currentVisibleItems[ci]);
             }
@@ -1359,22 +1491,34 @@
         function lbPrev() {
             if (currentImageIndex > 0) {
                 currentImageIndex--;
-                showImage();
+                updateCarousel(true);
             } else {
+                // Go to previous project, last image
                 ci = (ci - 1 + currentVisibleItems.length) % currentVisibleItems.length;
                 const item = currentVisibleItems[ci];
                 try { currentImages = JSON.parse(item.dataset.images); } catch(e) { currentImages = [item.querySelector('img').src]; }
                 currentImageIndex = currentImages.length - 1;
-                showImage();
+                buildCarousel();
                 lightbox.classList.add('active');
+                requestAnimationFrame(() => requestAnimationFrame(() => lightbox.classList.add('visible')));
                 document.body.style.overflow = 'hidden';
             }
         }
 
-        function closeLB() { lightbox.classList.remove('active'); document.body.style.overflow = ''; }
+        function closeLB() {
+            lightbox.classList.remove('visible');
+            setTimeout(() => {
+                lightbox.classList.remove('active');
+                document.body.style.overflow = '';
+                carouselTrack.innerHTML = '';
+                thumbnailStrip.innerHTML = '';
+            }, 300);
+        }
 
         document.getElementById('lightboxClose').addEventListener('click', closeLB);
-        lightbox.addEventListener('click', e => { if (e.target === lightbox) closeLB(); });
+        lightbox.addEventListener('click', e => {
+            if (e.target === lightbox || e.target.classList.contains('carousel-viewport')) closeLB();
+        });
         document.getElementById('lightboxPrev').addEventListener('click', e => { e.stopPropagation(); lbPrev(); });
         document.getElementById('lightboxNext').addEventListener('click', e => { e.stopPropagation(); lbNext(); });
         document.addEventListener('keydown', e => {
@@ -1383,6 +1527,20 @@
             if (e.key === 'ArrowLeft') lbPrev();
             if (e.key === 'ArrowRight') lbNext();
         });
+
+        // Touch/swipe support
+        carouselTrack.addEventListener('touchstart', e => {
+            touchStartX = e.changedTouches[0].screenX;
+        }, { passive: true });
+
+        carouselTrack.addEventListener('touchend', e => {
+            touchEndX = e.changedTouches[0].screenX;
+            const diff = touchStartX - touchEndX;
+            if (Math.abs(diff) > 50) {
+                if (diff > 0) lbNext();
+                else lbPrev();
+            }
+        }, { passive: true });
 
         // ========== CONTACT ==========
         function handleSubmit(e) {
