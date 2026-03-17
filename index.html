@@ -61,6 +61,148 @@
         img { display: block; max-width: 100%; }
         button { font-family: var(--font-body); }
 
+        /* ========== TAPE ART DESIGN SYSTEM ========== */
+        /*
+         * Every tape element gets a unique SVG filter (tape-1 thru tape-7)
+         * so no two strips look the same. Text gets subtle crinkle via tape-text.
+         * ::before = tape background shape, ::after = detail (fold, rip).
+         */
+
+        /* --- TAPE BUTTON: black filled, for primary CTA (Send) --- */
+        .tape-btn {
+            position: relative;
+            z-index: 1;
+            background: transparent;
+            color: var(--white);
+            border: none;
+            padding: 0.95rem 2.8rem;
+            font-family: var(--font-heading);
+            font-size: 0.85rem;
+            letter-spacing: 0.18em;
+            text-transform: uppercase;
+            cursor: pointer;
+            transition: transform 0.3s ease;
+            text-shadow: 0 0 2px rgba(0,0,0,0.3);
+        }
+        .tape-btn::before {
+            content: '';
+            position: absolute;
+            inset: -8px -12px;
+            z-index: -1;
+            background: url('images-optimized/tape/medium-2-web.webp') center/100% 100% no-repeat;
+        }
+        .tape-btn:hover { transform: rotate(-0.3deg) scale(1.02); }
+
+        /* --- TAPE BUTTON LIGHT: for secondary actions (Show More, Vita, Shop More) --- */
+        .tape-btn-light {
+            position: relative;
+            z-index: 1;
+            background: transparent;
+            color: var(--gray-700);
+            border: none;
+            padding: 0.65rem 1.8rem;
+            font-family: var(--font-heading);
+            font-size: 0.65rem;
+            letter-spacing: 0.12em;
+            text-transform: uppercase;
+            cursor: pointer;
+            transition: transform 0.3s ease;
+        }
+        .tape-btn-light::before {
+            content: '';
+            position: absolute;
+            inset: -6px -8px;
+            z-index: -1;
+            background: url('images-optimized/tape/medium-3-web.webp') center/100% 100% no-repeat;
+            opacity: 0.2;
+        }
+        .tape-btn-light:hover { transform: rotate(0.3deg) scale(1.02); }
+
+        /* --- TAPE BUTTON OUTLINE: for Inquire buttons --- */
+        .tape-btn-outline {
+            position: relative;
+            z-index: 1;
+            background: transparent;
+            color: var(--gray-700);
+            border: none;
+            padding: 0.6rem 1.6rem;
+            font-family: var(--font-heading);
+            font-size: 0.6rem;
+            letter-spacing: 0.12em;
+            text-transform: uppercase;
+            cursor: pointer;
+            transition: transform 0.3s ease;
+        }
+        .tape-btn-outline::before {
+            content: '';
+            position: absolute;
+            inset: -6px -8px;
+            z-index: -1;
+            background: url('images-optimized/tape/short-1-web.webp') center/100% 100% no-repeat;
+            opacity: 0.2;
+        }
+        .tape-btn-outline:hover { transform: rotate(0.4deg) scale(1.02); }
+
+        /* --- Individual character: rotation, tape strip variation --- */
+
+        /* Show More: medium-4 flipped */
+        .show-more-wrap .tape-btn-light {
+            transform: rotate(-1.3deg);
+        }
+        .show-more-wrap .tape-btn-light::before {
+            background-image: url('images-optimized/tape/medium-4-flip-web.webp');
+            inset: -8px -10px;
+        }
+        .show-more-wrap .tape-btn-light:hover { transform: rotate(-1deg) scale(1.02); }
+
+        /* Show Vita: medium-1 flipped */
+        .vita-wrap .tape-btn-light {
+            transform: rotate(1deg);
+            padding: 0.6rem 2rem;
+        }
+        .vita-wrap .tape-btn-light::before {
+            background-image: url('images-optimized/tape/medium-1-flip-web.webp');
+            inset: -6px -10px;
+        }
+        .vita-wrap .tape-btn-light:hover { transform: rotate(1.2deg) scale(1.02); }
+
+        /* Shop More: long-1 flipped */
+        #shopMoreWrap .tape-btn-light {
+            transform: rotate(0.8deg);
+        }
+        #shopMoreWrap .tape-btn-light::before {
+            background-image: url('images-optimized/tape/long-1-flip-web.webp');
+            inset: -7px -10px;
+        }
+        #shopMoreWrap .tape-btn-light:hover { transform: rotate(0.5deg) scale(1.02); }
+
+        /* Inquire buttons: each one uses a different short strip */
+        .shop-item:nth-child(1) .tape-btn-outline {
+            transform: rotate(-1.1deg);
+            padding: 0.55rem 1.5rem;
+        }
+        .shop-item:nth-child(1) .tape-btn-outline::before {
+            background-image: url('images-optimized/tape/medium-3-flip-web.webp');
+        }
+
+        .shop-item:nth-child(2) .tape-btn-outline {
+            transform: rotate(1.4deg);
+            padding: 0.65rem 1.7rem;
+        }
+        .shop-item:nth-child(2) .tape-btn-outline::before {
+            background-image: url('images-optimized/tape/medium-1-web.webp');
+        }
+
+        .shop-item:nth-child(3) .tape-btn-outline {
+            transform: rotate(-0.6deg);
+            padding: 0.6rem 1.4rem;
+        }
+        .shop-item:nth-child(3) .tape-btn-outline::before {
+            background-image: url('images-optimized/tape/short-1-flip-web.webp');
+        }
+
+        /* (folded corners removed) */
+
         /* ========== NAVIGATION ========== */
         .nav {
             position: fixed;
@@ -113,18 +255,65 @@
             text-transform: uppercase;
             font-weight: 400;
             position: relative;
+            z-index: 1;
+            color: var(--white);
+            padding: 0.35rem 0.7rem;
+            transition: transform 0.3s ease;
         }
 
-        .nav-links a::after {
+        .nav-links a::before {
             content: '';
             position: absolute;
-            bottom: -4px; left: 0;
-            width: 0; height: 1px;
-            background: currentColor;
-            transition: width 0.4s cubic-bezier(0.25, 1, 0.5, 1);
+            inset: -4px -8px;
+            z-index: -1;
+            background-size: 100% 100%;
+            background-repeat: no-repeat;
+            background-position: center;
+            transition: transform 0.4s cubic-bezier(0.25, 1, 0.5, 1), filter 0.3s ease;
+            transform-origin: left bottom;
         }
 
-        .nav-links a:hover::after { width: 100%; }
+        .nav-links a:hover::before {
+            transform: perspective(300px) rotateX(-14deg) rotateZ(-3deg) translateY(-5px);
+            filter: drop-shadow(3px 6px 8px rgba(0,0,0,0.35));
+        }
+
+        /* Each nav item: different strip, slight rotation, alternating peel direction */
+        .nav-links li:nth-child(1) a::before {
+            background-image: url('images-optimized/tape/medium-3-web.webp');
+            transform: rotate(-0.8deg);
+            transform-origin: left bottom;
+        }
+        .nav-links li:nth-child(1) a:hover::before {
+            transform: perspective(300px) rotateX(-14deg) rotateZ(-3deg) translateY(-5px);
+        }
+        .nav-links li:nth-child(2) a::before {
+            background-image: url('images-optimized/tape/medium-1-flip-web.webp');
+            transform: rotate(0.6deg);
+            transform-origin: right bottom;
+        }
+        .nav-links li:nth-child(2) a:hover::before {
+            transform: perspective(300px) rotateX(-14deg) rotateZ(3deg) translateY(-5px);
+        }
+        .nav-links li:nth-child(3) a::before {
+            background-image: url('images-optimized/tape/medium-2-flip-web.webp');
+            transform: rotate(-0.4deg);
+            transform-origin: right top;
+        }
+        .nav-links li:nth-child(3) a:hover::before {
+            transform: perspective(300px) rotateX(12deg) rotateZ(2.5deg) translateY(4px);
+        }
+        .nav-links li:nth-child(4) a::before {
+            background-image: url('images-optimized/tape/medium-4-flip-web.webp');
+            transform: rotate(0.7deg);
+            transform-origin: left top;
+        }
+        .nav-links li:nth-child(4) a:hover::before {
+            transform: perspective(300px) rotateX(12deg) rotateZ(-2.5deg) translateY(4px);
+        }
+
+        /* When scrolled: nav has white bg, so nav links need dark tape */
+        .nav.scrolled .nav-links a { color: var(--white); }
 
         .lang-toggle {
             background: none;
@@ -200,15 +389,27 @@
         }
 
         .hero-name {
+            position: relative;
+            z-index: 1;
+            display: inline-block;
             font-family: var(--font-heading);
-            font-size: clamp(1.4rem, 3vw, 2.2rem);
+            font-size: clamp(1.6rem, 3.5vw, 2.6rem);
             font-weight: 400;
             letter-spacing: 0.35em;
             text-transform: uppercase;
             color: var(--white);
             margin-bottom: 1rem;
+            padding: 0.8rem 1.2rem;
             opacity: 0;
             animation: fadeSlideUp 1s cubic-bezier(0.16, 1, 0.3, 1) 0.3s forwards;
+        }
+        .hero-name::before {
+            content: '';
+            position: absolute;
+            inset: -14px -28px;
+            z-index: -1;
+            background: url('images-optimized/tape/hero-name-v2-web.webp') center/100% 100% no-repeat;
+            transform: rotate(-0.3deg);
         }
 
         .hero-tagline {
@@ -252,14 +453,70 @@
 
         .section-title {
             font-family: var(--font-heading);
-            font-size: clamp(1.4rem, 3vw, 2.2rem);
+            font-size: clamp(0.8rem, 1.6vw, 1rem);
             font-weight: 400;
-            letter-spacing: 0.35em;
+            letter-spacing: 0.3em;
             text-transform: uppercase;
-            line-height: 1.2;
+            line-height: 1;
             margin-bottom: 3rem;
-            color: var(--gray-900);
+            color: var(--white);
             text-align: center;
+            display: block;
+            position: relative;
+            z-index: 1;
+            padding: 1rem 2.8rem;
+            width: fit-content;
+            margin-left: auto;
+            margin-right: auto;
+        }
+        .section-title::before {
+            content: '';
+            position: absolute;
+            inset: -6px -8px;
+            z-index: -1;
+        }
+        .section-title::after { display: none; }
+
+        /* --- Each section title: unique filter, gradient, rotation, quirks --- */
+
+        /* SELECTED WORKS: long-5 flipped, deutlich schief */
+        #portfolio .section-title {
+            transform: rotate(-1.5deg);
+            padding: 1.05rem 3rem;
+        }
+        #portfolio .section-title::before {
+            background: url('images-optimized/tape/long-5-flip-web.webp') center/100% 100% no-repeat;
+            inset: -8px -12px;
+        }
+
+        /* ABOUT: long-2 flipped, nach rechts geneigt */
+        #about .section-title {
+            transform: rotate(1.2deg);
+            padding: 0.95rem 2.5rem;
+        }
+        #about .section-title::before {
+            background: url('images-optimized/tape/long-2-flip-web.webp') center/100% 100% no-repeat;
+            inset: -8px -10px;
+        }
+
+        /* SHOP: long-1 */
+        #shop .section-title {
+            transform: rotate(-0.8deg);
+            padding: 1rem 2.6rem;
+        }
+        #shop .section-title::before {
+            background: url('images-optimized/tape/long-1-web.webp') center/100% 100% no-repeat;
+            inset: -8px -14px;
+        }
+
+        /* CONTACT: long-3 flipped, deutlicher Winkel */
+        #contact .section-title {
+            transform: rotate(1.8deg);
+            padding: 0.95rem 2.8rem;
+        }
+        #contact .section-title::before {
+            background: url('images-optimized/tape/long-3-flip-web.webp') center/100% 100% no-repeat;
+            inset: -8px -12px;
         }
 
         /* ========== PORTFOLIO ========== */
@@ -327,22 +584,7 @@
         }
 
         .show-more-wrap button {
-            background: none;
-            border: 1px solid var(--gray-300);
-            color: var(--gray-600);
-            padding: 0.8rem 2.5rem;
-            font-family: var(--font-heading);
-            font-size: 0.75rem;
-            letter-spacing: 0.15em;
-            text-transform: uppercase;
-            cursor: pointer;
-            transition: all 0.3s ease;
-        }
-
-        .show-more-wrap button:hover {
-            background: var(--gray-900);
-            color: var(--white);
-            border-color: var(--gray-900);
+            /* Inherits .tape-btn-light via class */
         }
 
         /* Portfolio More Grid */
@@ -445,10 +687,10 @@
             font-weight: 300;
         }
 
-        /* Divider */
+        /* Divider — thin tape strip style */
         .section-divider {
             width: 100%;
-            height: 1px;
+            height: 2px;
             background: var(--gray-200);
             margin: 2.5rem 0;
         }
@@ -460,22 +702,7 @@
         }
 
         .vita-toggle {
-            background: none;
-            border: 1px solid var(--gray-300);
-            color: var(--gray-600);
-            padding: 0.8rem 2.5rem;
-            font-family: var(--font-heading);
-            font-size: 0.75rem;
-            letter-spacing: 0.15em;
-            text-transform: uppercase;
-            cursor: pointer;
-            transition: all 0.3s ease;
-        }
-
-        .vita-toggle:hover {
-            background: var(--gray-900);
-            color: var(--white);
-            border-color: var(--gray-900);
+            /* Inherits .tape-btn-light via class */
         }
 
         .vita-list {
@@ -544,27 +771,35 @@
             justify-content: space-between;
         }
 
-        .timeline::before {
-            content: '';
-            position: absolute;
-            left: 0; top: 0; bottom: 0;
-            width: 1px;
-            background: var(--gray-200);
-        }
+        /* Timeline = crosses only, no line */
+        .timeline::before { display: none; }
 
         .timeline-item {
             position: relative;
             padding-bottom: 0;
         }
 
+        /* Real tape crosses — one per timeline item */
         .timeline-item::before {
             content: '';
             position: absolute;
-            left: -2.5rem; top: 0.35rem;
-            width: 5px; height: 5px;
-            border-radius: 50%;
-            background: var(--gray-300);
-            transform: translateX(-2px);
+            left: -2.8rem; top: -0.2rem;
+            width: 44px; height: 40px;
+            transform: translateX(-8px);
+            background-size: contain;
+            background-repeat: no-repeat;
+            background-position: center;
+        }
+        .timeline-item::after { display: none; }
+
+        .timeline-item:nth-child(1)::before {
+            background-image: url('images-optimized/tape/tl-cross-1-web.webp');
+        }
+        .timeline-item:nth-child(2)::before {
+            background-image: url('images-optimized/tape/tl-cross-2-web.webp');
+        }
+        .timeline-item:nth-child(3)::before {
+            background-image: url('images-optimized/tape/tl-cross-3-web.webp');
         }
 
         .timeline-year {
@@ -676,20 +911,11 @@
         .contact-form-compact textarea { resize: none; height: 80px; }
 
         .submit-btn {
-            align-self: flex-start;
-            padding: 0.7rem 2rem;
-            background: var(--gray-900);
-            color: var(--white);
-            border: none;
-            font-family: var(--font-heading);
+            /* Inherits .tape-btn via class */
             font-size: 0.65rem;
             letter-spacing: 0.2em;
-            text-transform: uppercase;
-            cursor: pointer;
-            transition: background 0.3s ease;
+            padding: 0.7rem 2rem;
         }
-
-        .submit-btn:hover { background: var(--gray-700); }
 
         /* ========== SHOP ========== */
         .shop {
@@ -751,32 +977,26 @@
         }
 
         .inquire-btn {
+            /* Inherits .tape-btn-outline via class */
             display: inline-block;
-            padding: 0.6rem 1.8rem;
-            border: 1px solid var(--gray-300);
-            color: var(--gray-700);
-            font-family: var(--font-heading);
             font-size: 0.65rem;
             letter-spacing: 0.2em;
-            text-transform: uppercase;
-            cursor: pointer;
-            transition: all 0.3s ease;
-            background: none;
+            padding: 0.6rem 1.8rem;
         }
-
-        .inquire-btn:hover { background: var(--gray-900); color: var(--white); border-color: var(--gray-900); }
 
         /* ========== FOOTER ========== */
         footer {
             position: relative;
             padding: 2.5rem 3rem;
-            border-top: 1px solid var(--gray-100);
+            padding-top: 3rem;
+            border-top: none;
             display: flex;
             justify-content: space-between;
             align-items: center;
             font-size: 0.7rem;
             color: var(--gray-500);
         }
+        /* footer line removed */
 
         .footer-links { display: flex; gap: 2rem; }
         .footer-links a { color: var(--gray-500); transition: color 0.3s; font-size: 0.7rem; }
@@ -958,8 +1178,8 @@
             }
 
             .about-section { padding: 4rem 1.5rem 3rem; }
-            .timeline { padding-left: 2rem; }
-            .timeline-item::before { left: -2rem; }
+            .timeline { padding-left: 2.5rem; }
+            .timeline-item::before { left: -2.2rem; width: 36px; height: 34px; transform: translateX(-6px); }
             .vita-list li { grid-template-columns: 3rem 1fr; gap: 0.3rem 0.8rem; font-size: 0.8rem; }
             .vita-type { grid-column: 2; font-size: 0.6rem; padding-top: 0; }
 
@@ -1028,7 +1248,6 @@
         <div class="hero-overlay"></div>
         <div class="hero-content">
             <h1 class="hero-name">Stephan Meissner</h1>
-            <p class="hero-tagline" data-en="Visual Artist · Berlin" data-de="Bildender Künstler · Berlin">Visual Artist · Berlin</p>
         </div>
     </section>
 
@@ -1082,7 +1301,7 @@
         </div>
 
         <div class="show-more-wrap" id="showMoreWrap">
-            <button id="showMoreBtn" data-en="Show More +" data-de="Mehr anzeigen +">Show More +</button>
+            <button class="tape-btn-light" id="showMoreBtn" data-en="Show More +" data-de="Mehr anzeigen +">Show More +</button>
         </div>
 
         <div id="portfolioMore" style="display:none;">
@@ -1173,7 +1392,6 @@
 
     </section>
 
-
     <!-- About -->
     <section class="about-section" id="about" aria-label="About the artist">
         <div class="about-inner">
@@ -1213,7 +1431,7 @@
 
             <!-- Vita Toggle -->
             <div class="vita-wrap">
-                <button class="vita-toggle" id="vitaToggle" data-en="Show Vita +" data-de="Vita anzeigen +">Show Vita +</button>
+                <button class="vita-toggle tape-btn-light" id="vitaToggle" data-en="Show Vita +" data-de="Vita anzeigen +">Show Vita +</button>
             </div>
             <div class="vita-list" id="vitaList">
                 <ul>
@@ -1248,7 +1466,6 @@
         </div>
     </section>
 
-
     <!-- Shop -->
     <section class="shop" id="shop" aria-label="Shop original artworks">
         <div class="shop-inner">
@@ -1256,40 +1473,43 @@
             <div class="shop-grid">
                 <div class="shop-item reveal">
                     <div class="shop-item-images">
-                        <img src="images-optimized/shop/IMG_9065.webp" alt="Artwork I" loading="lazy">
-                        <img src="images-optimized/shop/IMG_9048.webp" alt="Artwork I detail" loading="lazy">
+                        <img src="images-optimized/shop/IMG_9065.webp" alt="Heat — washi tape and spraypaint, 100×65cm" loading="lazy">
+                        <img src="images-optimized/shop/IMG_9048.webp" alt="Heat — detail view" loading="lazy">
                     </div>
                     <div class="shop-item-info">
-                        <h3>Untitled I</h3>
-                        <p class="description" data-en="Tape on canvas, magenta & orange" data-de="Tape auf Leinwand, Magenta & Orange">Tape on canvas, magenta & orange</p>
+                        <h3>Heat</h3>
+                        <p class="description" data-en="Washi tape and spraypaint on light foam board · 100 × 65 cm · White shadow gap frame" data-de="Washi Tape und Sprühfarbe auf Leichtschaumplatte · 100 × 65 cm · Weißer Schattenfugenrahmen">Washi tape and spraypaint on light foam board · 100 × 65 cm · White shadow gap frame</p>
                         <div class="price" data-en="Price on request" data-de="Preis auf Anfrage">Price on request</div>
-                        <a href="mailto:sm@tapethatcollective.com?subject=Inquiry: Untitled I" class="inquire-btn" data-en="Inquire" data-de="Anfragen">Inquire</a>
+                        <a href="mailto:sm@tapethatcollective.com?subject=Inquiry: Heat" class="inquire-btn tape-btn-outline" data-en="Inquire" data-de="Anfragen">Inquire</a>
                     </div>
                 </div>
                 <div class="shop-item reveal">
                     <div class="shop-item-images">
-                        <img src="images-optimized/shop/IMG_9111-2.webp" alt="Artwork II" loading="lazy">
-                        <img src="images-optimized/shop/IMG_9110.webp" alt="Artwork II detail" loading="lazy">
+                        <img src="images-optimized/shop/IMG_9111-2.webp" alt="First Snow — washi tape and spraypaint, 100×65cm" loading="lazy">
+                        <img src="images-optimized/shop/IMG_9110.webp" alt="First Snow — detail view" loading="lazy">
                     </div>
                     <div class="shop-item-info">
-                        <h3>Untitled II</h3>
-                        <p class="description" data-en="Tape on canvas, blue & purple" data-de="Tape auf Leinwand, Blau & Lila">Tape on canvas, blue & purple</p>
+                        <h3>First Snow</h3>
+                        <p class="description" data-en="Washi tape and spraypaint on light foam board · 100 × 65 cm · White shadow gap frame · 2023" data-de="Washi Tape und Sprühfarbe auf Leichtschaumplatte · 100 × 65 cm · Weißer Schattenfugenrahmen · 2023">Washi tape and spraypaint on light foam board · 100 × 65 cm · White shadow gap frame · 2023</p>
                         <div class="price" data-en="Price on request" data-de="Preis auf Anfrage">Price on request</div>
-                        <a href="mailto:sm@tapethatcollective.com?subject=Inquiry: Untitled II" class="inquire-btn" data-en="Inquire" data-de="Anfragen">Inquire</a>
+                        <a href="mailto:sm@tapethatcollective.com?subject=Inquiry: First Snow" class="inquire-btn tape-btn-outline" data-en="Inquire" data-de="Anfragen">Inquire</a>
                     </div>
                 </div>
                 <div class="shop-item reveal">
                     <div class="shop-item-images">
-                        <img src="images-optimized/shop/IMG_9283.webp" alt="Artwork III" loading="lazy">
-                        <img src="images-optimized/shop/IMG_9254.webp" alt="Artwork III detail" loading="lazy">
+                        <img src="images-optimized/shop/IMG_9283.webp" alt="High Low — washi tape and spraypaint, 50×50cm" loading="lazy">
+                        <img src="images-optimized/shop/IMG_9254.webp" alt="High Low — detail view" loading="lazy">
                     </div>
                     <div class="shop-item-info">
-                        <h3>Untitled III</h3>
-                        <p class="description" data-en="Tape on canvas, mint & purple" data-de="Tape auf Leinwand, Mint & Lila">Tape on canvas, mint & purple</p>
+                        <h3>High Low</h3>
+                        <p class="description" data-en="Washi tape and spraypaint on light foam board · 50 × 50 cm · White shadow gap frame" data-de="Washi Tape und Sprühfarbe auf Leichtschaumplatte · 50 × 50 cm · Weißer Schattenfugenrahmen">Washi tape and spraypaint on light foam board · 50 × 50 cm · White shadow gap frame</p>
                         <div class="price" data-en="Price on request" data-de="Preis auf Anfrage">Price on request</div>
-                        <a href="mailto:sm@tapethatcollective.com?subject=Inquiry: Untitled III" class="inquire-btn" data-en="Inquire" data-de="Anfragen">Inquire</a>
+                        <a href="mailto:sm@tapethatcollective.com?subject=Inquiry: High Low" class="inquire-btn tape-btn-outline" data-en="Inquire" data-de="Anfragen">Inquire</a>
                     </div>
                 </div>
+            </div>
+            <div class="show-more-wrap" id="shopMoreWrap">
+                <button class="tape-btn-light" id="shopMoreBtn" data-en="Browse All Works →" data-de="Alle Werke ansehen →">Browse All Works →</button>
             </div>
         </div>
     </section>
@@ -1320,7 +1540,7 @@
                 <input type="email" id="contact-email" name="email" placeholder="Email" required data-en-placeholder="Email" data-de-placeholder="E-Mail">
                 <label for="contact-message" class="sr-only">Message</label>
                 <textarea id="contact-message" name="message" placeholder="Message" required data-en-placeholder="Message" data-de-placeholder="Nachricht"></textarea>
-                <button type="submit" class="submit-btn" style="align-self: center;" data-en="Send" data-de="Senden">Send</button>
+                <button type="submit" class="submit-btn tape-btn" style="align-self: center;" data-en="Send" data-de="Senden">Send</button>
             </form>
         </div>
     </section>
@@ -1498,6 +1718,33 @@
             if (isHidden) {
                 portfolioMore.querySelectorAll('.reveal').forEach(el => ro.observe(el));
             }
+        });
+
+        // ========== SHOP IMAGE LIGHTBOX ==========
+        document.querySelectorAll('.shop-item').forEach(shopItem => {
+            // Store images as data attribute so lightbox nav works
+            const imgs = Array.from(shopItem.querySelectorAll('.shop-item-images img'));
+            shopItem.dataset.images = JSON.stringify(imgs.map(i => i.src));
+            shopItem.dataset.title = shopItem.querySelector('h3')?.textContent || '';
+        });
+        const shopItemEls = Array.from(document.querySelectorAll('.shop-item'));
+        document.querySelectorAll('.shop-item-images img').forEach(img => {
+            img.addEventListener('click', () => {
+                const shopItem = img.closest('.shop-item');
+                currentVisibleItems = shopItemEls;
+                ci = shopItemEls.indexOf(shopItem);
+                openLB(shopItem);
+                // Jump to clicked image
+                const imgs = Array.from(shopItem.querySelectorAll('.shop-item-images img'));
+                const idx = imgs.indexOf(img);
+                if (idx > 0) goToImage(idx);
+            });
+        });
+
+        // ========== SHOP MORE BUTTON ==========
+        const shopMoreBtn = document.getElementById('shopMoreBtn');
+        shopMoreBtn.addEventListener('click', () => {
+            window.location.href = 'mailto:sm@tapethatcollective.com?subject=Inquiry: Available Artworks';
         });
 
         // ========== VITA TOGGLE ==========
@@ -1695,12 +1942,7 @@
             window.location.href = `mailto:sm@tapethatcollective.com?subject=${encodeURIComponent('Website: ' + f.name.value)}&body=${encodeURIComponent('From: ' + f.name.value + '\nEmail: ' + f.email.value + '\n\n' + f.message.value)}`;
         }
 
-        // ========== HERO PARALLAX ==========
-        window.addEventListener('scroll', () => {
-            if (window.scrollY < window.innerHeight) {
-                document.querySelector('.hero-content').style.opacity = 1 - (window.scrollY / window.innerHeight) * 0.8;
-            }
-        });
+        // ========== HERO PARALLAX (fade removed — tape stays visible) ==========
     </script>
 </body>
 </html>
