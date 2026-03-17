@@ -18,6 +18,7 @@
     <meta name="author" content="Stephan Meissner">
     <meta name="robots" content="index, follow">
     <link rel="canonical" href="https://www.stephan-meissner.com/">
+    <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Ccircle cx='50' cy='50' r='45' fill='none' stroke='%23222' stroke-width='18'/%3E%3Ccircle cx='50' cy='50' r='12' fill='%23222'/%3E%3C/svg%3E">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700&family=DM+Sans:ital,wght@0,300;0,400;0,500;1,400&display=swap" rel="stylesheet">
@@ -448,6 +449,87 @@
             margin: 2.5rem 0;
         }
 
+        /* Vita */
+        .vita-wrap {
+            text-align: center;
+            padding: 1.5rem 0 0;
+        }
+
+        .vita-toggle {
+            background: none;
+            border: 1px solid var(--gray-300);
+            color: var(--gray-600);
+            padding: 0.8rem 2.5rem;
+            font-family: var(--font-heading);
+            font-size: 0.75rem;
+            letter-spacing: 0.15em;
+            text-transform: uppercase;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .vita-toggle:hover {
+            background: var(--gray-900);
+            color: var(--white);
+            border-color: var(--gray-900);
+        }
+
+        .vita-list {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+
+        .vita-list.open {
+            max-height: 2000px;
+        }
+
+        .vita-list ul {
+            list-style: none;
+            max-width: 900px;
+            margin: 2rem auto 0;
+            text-align: left;
+        }
+
+        .vita-list li {
+            display: grid;
+            grid-template-columns: 3.5rem 1fr auto;
+            gap: 0.5rem 1rem;
+            padding: 0.5rem 0;
+            border-bottom: 1px solid var(--gray-100);
+            font-size: 0.85rem;
+            color: var(--gray-600);
+            font-weight: 300;
+            align-items: baseline;
+        }
+
+        .vita-year {
+            font-family: var(--font-heading);
+            font-weight: 500;
+            color: var(--gray-800);
+            font-size: 0.8rem;
+        }
+
+        .vita-name {
+            color: var(--gray-700);
+            font-weight: 400;
+        }
+
+        .vita-location {
+            color: var(--gray-400);
+            font-size: 0.75rem;
+        }
+
+        .vita-type {
+            font-family: var(--font-heading);
+            font-size: 0.65rem;
+            letter-spacing: 0.1em;
+            text-transform: uppercase;
+            color: var(--gray-400);
+            text-align: right;
+            white-space: nowrap;
+        }
+
         /* Timeline */
         .timeline {
             position: relative;
@@ -874,6 +956,8 @@
             .about-section { padding: 4rem 1.5rem 3rem; }
             .timeline { padding-left: 2rem; }
             .timeline-item::before { left: -2rem; }
+            .vita-list li { grid-template-columns: 3rem 1fr; gap: 0.3rem 0.8rem; font-size: 0.8rem; }
+            .vita-type { grid-column: 2; font-size: 0.6rem; padding-top: 0; }
 
             .shop { padding: 5rem 1.5rem; }
             .shop-grid { grid-template-columns: 1fr; gap: 2rem; }
@@ -1122,6 +1206,41 @@
                     </div>
                 </div>
             </div>
+
+            <!-- Vita Toggle -->
+            <div class="vita-wrap">
+                <button class="vita-toggle" id="vitaToggle" data-en="Show Vita +" data-de="Vita anzeigen +">Show Vita +</button>
+            </div>
+            <div class="vita-list" id="vitaList">
+                <ul>
+                    <li><span class="vita-year">2026</span><span><span class="vita-name">New & Abstract</span> <span class="vita-location" data-en="(Guest Curation), Berlin, Germany" data-de="(Gastkuration), Berlin, Deutschland">(Guest Curation), Berlin, Germany</span></span><span class="vita-type">Solo</span></li>
+                    <li><span class="vita-year">2025</span><span><span class="vita-name">Not a Gallery</span> <span class="vita-location" data-en="Berlin, Germany" data-de="Berlin, Deutschland">Berlin, Germany</span></span><span class="vita-type">Solo</span></li>
+                    <li><span class="vita-year">2025</span><span><span class="vita-name">Pop Into More Colors</span> <span class="vita-location">Tseung Kwan, Hong Kong</span></span><span class="vita-type">Group</span></li>
+                    <li><span class="vita-year">2025</span><span><span class="vita-name">Freiluft Kunst Club</span> <span class="vita-location" data-en="Berlin, Germany" data-de="Berlin, Deutschland">Berlin, Germany</span></span><span class="vita-type">Group</span></li>
+                    <li><span class="vita-year">2025</span><span><span class="vita-name">mt Super Tape Festival</span> <span class="vita-location" data-en="Berlin, Germany" data-de="Berlin, Deutschland">Berlin, Germany</span></span><span class="vita-type">Group</span></li>
+                    <li><span class="vita-year">2022</span><span><span class="vita-name">Zeitenwende</span> <span class="vita-location" data-en="Contemporary Show Room, Berlin, Germany" data-de="Contemporary Show Room, Berlin, Deutschland">Contemporary Show Room, Berlin, Germany</span></span><span class="vita-type">Solo</span></li>
+                    <li><span class="vita-year">2022</span><span><span class="vita-name">Tape Art Convention</span> <span class="vita-location" data-en="Napoleon Komplex, Berlin, Germany" data-de="Napoleon Komplex, Berlin, Deutschland">Napoleon Komplex, Berlin, Germany</span></span><span class="vita-type">Group</span></li>
+                    <li><span class="vita-year">2021</span><span><span class="vita-name">Tape Art by TAPE THAT 2.0</span> <span class="vita-location">Kaohsiung, Taiwan</span></span><span class="vita-type">Group</span></li>
+                    <li><span class="vita-year">2021</span><span><span class="vita-name">Liebesbier Art Hotel</span> <span class="vita-location" data-en="Bayreuth, Germany" data-de="Bayreuth, Deutschland">Bayreuth, Germany</span></span><span class="vita-type">Solo</span></li>
+                    <li><span class="vita-year">2020</span><span><span class="vita-name">MT Art Tour</span> <span class="vita-location">Ushimado, Tokyo, Hokkaido, Japan</span></span><span class="vita-type">Group</span></li>
+                    <li><span class="vita-year">2020</span><span><span class="vita-name" data-en="Japanisches Palais" data-de="Japanisches Palais">Japanisches Palais</span> <span class="vita-location" data-en="Dresden, Germany" data-de="Dresden, Deutschland">Dresden, Germany</span></span><span class="vita-type">Group</span></li>
+                    <li><span class="vita-year">2020</span><span><span class="vita-name">Berlin Global</span> <span class="vita-location" data-en="Humboldt Forum, Berlin, Germany" data-de="Humboldt Forum, Berlin, Deutschland">Humboldt Forum, Berlin, Germany</span></span><span class="vita-type">Group</span></li>
+                    <li><span class="vita-year">2020</span><span><span class="vita-name">Hannah Arendt</span> <span class="vita-location" data-en="Bundeskunsthalle, Bonn, Germany" data-de="Bundeskunsthalle, Bonn, Deutschland">Bundeskunsthalle, Bonn, Germany</span></span><span class="vita-type">Group</span></li>
+                    <li><span class="vita-year">2019</span><span><span class="vita-name">Tape Art by TAPE THAT</span> <span class="vita-location">Taipei, Taiwan</span></span><span class="vita-type">Group</span></li>
+                    <li><span class="vita-year">2019</span><span><span class="vita-name">Millentor Gallery</span> <span class="vita-location" data-en="Hamburg, Germany" data-de="Hamburg, Deutschland">Hamburg, Germany</span></span><span class="vita-type">Group</span></li>
+                    <li><span class="vita-year">2019</span><span><span class="vita-name">Festival of Lights</span> <span class="vita-location" data-en="Berlin, Germany" data-de="Berlin, Deutschland">Berlin, Germany</span></span><span class="vita-type">Group</span></li>
+                    <li><span class="vita-year">2019</span><span><span class="vita-name">Museumsnacht Basel</span> <span class="vita-location" data-en="Basel, Switzerland" data-de="Basel, Schweiz">Basel, Switzerland</span></span><span class="vita-type">Group</span></li>
+                    <li><span class="vita-year">2018</span><span><span class="vita-name">Tape Art Convention</span> <span class="vita-location" data-en="Neurotitan Gallery, Berlin, Germany" data-de="Neurotitan Gallery, Berlin, Deutschland">Neurotitan Gallery, Berlin, Germany</span></span><span class="vita-type">Group</span></li>
+                    <li><span class="vita-year">2017</span><span><span class="vita-name">Helsinki Design Week</span> <span class="vita-location">Helsinki, Finland</span></span><span class="vita-type">Group</span></li>
+                    <li><span class="vita-year">2017</span><span><span class="vita-name">Transurban</span> <span class="vita-location" data-en="Bunker K101, Cologne, Germany" data-de="Bunker K101, Köln, Deutschland">Bunker K101, Cologne, Germany</span></span><span class="vita-type">Group</span></li>
+                    <li><span class="vita-year">2017</span><span><span class="vita-name">The Haus — Berlin Art Bang</span> <span class="vita-location" data-en="Berlin, Germany" data-de="Berlin, Deutschland">Berlin, Germany</span></span><span class="vita-type">Group</span></li>
+                    <li><span class="vita-year">2016</span><span><span class="vita-name">Tape Art Convention</span> <span class="vita-location" data-en="Neurotitan Gallery, Berlin, Germany" data-de="Neurotitan Gallery, Berlin, Deutschland">Neurotitan Gallery, Berlin, Germany</span></span><span class="vita-type">Group</span></li>
+                    <li><span class="vita-year">2014</span><span><span class="vita-name" data-en="Blaue Nacht" data-de="Blaue Nacht">Blaue Nacht</span> <span class="vita-location" data-en="Deutsche Bahn Museum, Nuremberg, Germany" data-de="Deutsche Bahn Museum, Nürnberg, Deutschland">Deutsche Bahn Museum, Nuremberg, Germany</span></span><span class="vita-type">Group</span></li>
+                    <li><span class="vita-year">2012</span><span><span class="vita-name">Sprite Graffiti Festival</span> <span class="vita-location" data-en="German Embassy, Sofia, Bulgaria" data-de="Deutsche Botschaft, Sofia, Bulgarien">German Embassy, Sofia, Bulgaria</span></span><span class="vita-type">Group</span></li>
+                    <li><span class="vita-year" data-en="2012–ongoing" data-de="2012–heute">2012–ongoing</span><span><span class="vita-name">Tape Art Around The World</span> <span class="vita-location">International</span></span><span class="vita-type">Solo & Group</span></li>
+                </ul>
+            </div>
+
         </div>
     </section>
 
@@ -1296,6 +1415,13 @@
                 const p = el.getAttribute(`data-${currentLang}-placeholder`);
                 if (p) el.placeholder = p;
             });
+            // Update vita toggle text
+            const isVitaOpen = vitaList.classList.contains('open');
+            if (currentLang === 'en') {
+                vitaToggle.textContent = isVitaOpen ? 'Hide Vita −' : 'Show Vita +';
+            } else {
+                vitaToggle.textContent = isVitaOpen ? 'Vita ausblenden −' : 'Vita anzeigen +';
+            }
         });
 
         // ========== MOBILE MENU ==========
@@ -1364,6 +1490,19 @@
             }
             if (isHidden) {
                 portfolioMore.querySelectorAll('.reveal').forEach(el => ro.observe(el));
+            }
+        });
+
+        // ========== VITA TOGGLE ==========
+        const vitaToggle = document.getElementById('vitaToggle');
+        const vitaList = document.getElementById('vitaList');
+
+        vitaToggle.addEventListener('click', () => {
+            const isOpen = vitaList.classList.toggle('open');
+            if (currentLang === 'en') {
+                vitaToggle.textContent = isOpen ? 'Hide Vita −' : 'Show Vita +';
+            } else {
+                vitaToggle.textContent = isOpen ? 'Vita ausblenden −' : 'Vita anzeigen +';
             }
         });
 
