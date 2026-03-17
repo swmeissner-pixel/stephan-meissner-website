@@ -1,4 +1,6 @@
 node_modules/
 reference/
 .DS_Store
-*.png
+images/
+optimize-images.js
+.claude/
