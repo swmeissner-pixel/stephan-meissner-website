@@ -1116,6 +1116,15 @@
             color: var(--gray-400);
         }
 
+        .lightbox-credit {
+            font-family: var(--font-body);
+            font-size: 0.65rem;
+            color: var(--gray-400);
+            opacity: 0.7;
+            letter-spacing: 0.02em;
+        }
+        .lightbox-credit:empty { display: none; }
+
         .thumbnail-strip {
             display: flex;
             gap: 6px;
@@ -1229,7 +1238,7 @@
     <!-- Hero Slideshow — fast 1s cuts -->
     <section class="hero" id="hero" aria-label="Hero slideshow">
         <div class="hero-slides" id="heroSlides">
-            <div class="hero-slide active"><img src="images-optimized/hero/artcaden%20nachz(1).webp" alt="Artcarden Installation"></div>
+            <div class="hero-slide active"><img src="images-optimized/hero/artcaden%20nachz(1).webp" alt="Artcaden Installation"></div>
             <div class="hero-slide"><img src="images-optimized/hero/TT_RSA_web-26.webp" alt="RSA Grid Room" loading="lazy"></div>
             <div class="hero-slide"><img src="images-optimized/hero/HQ_Taiwan2_Installationen-67.webp" alt="Taiwan Exhibition" loading="lazy"></div>
             <div class="hero-slide"><img src="images-optimized/hero/TobiasAde_221228_autofinal-12.webp" alt="Porsche Art Car" loading="lazy"></div>
@@ -1258,7 +1267,7 @@
         </div>
         <div class="portfolio-grid" id="portfolioGrid">
 
-            <div class="portfolio-item reveal" data-title="Tape Splash" data-desc="Immersive room installation" data-images='["images-optimized/portfolio/tape%20splash/20190712_TAPE%20THAT_Space_0397(1)_totale.webp","images-optimized/portfolio/tape%20splash/190704_LB_TT_Taiwan-5.webp","images-optimized/portfolio/tape%20splash/190706_LB_TT_Taiwan-20.webp","images-optimized/portfolio/tape%20splash/190706_LB_TT_Taiwan-5.webp","images-optimized/portfolio/tape%20splash/190712_LB_TT_Taiwan-46.webp","images-optimized/portfolio/tape%20splash/1907_LB_TT_Taiwan_2nd%20draft-35.webp"]'>
+            <div class="portfolio-item reveal" data-title="Tape Splash" data-desc="Immersive room installation" data-images='["images-optimized/portfolio/tape%20splash/20190712_TAPE%20THAT_Space_0397(1)_totale.webp","images-optimized/portfolio/tape%20splash/190704_LB_TT_Taiwan-5.webp","images-optimized/portfolio/tape%20splash/190706_LB_TT_Taiwan-20.webp","images-optimized/portfolio/tape%20splash/190706_LB_TT_Taiwan-5.webp","images-optimized/portfolio/tape%20splash/190712_LB_TT_Taiwan-46.webp","images-optimized/portfolio/tape%20splash/1907_LB_TT_Taiwan_2nd%20draft-35.webp"]' data-credits='["Laurenz Bostedt","Laurenz Bostedt","Laurenz Bostedt","Laurenz Bostedt","Laurenz Bostedt","Laurenz Bostedt"]'>
                 <img src="images-optimized/portfolio/tape%20splash/20190712_TAPE%20THAT_Space_0397(1)_totale.webp" alt="Tape Splash — immersive room installation with colorful tape" loading="lazy">
                 <div class="overlay"><div class="overlay-text"><h3>Tape Splash</h3><p>Immersive room installation</p></div></div>
             </div>
@@ -1307,7 +1316,7 @@
         <div id="portfolioMore" style="display:none;">
             <div class="portfolio-more-grid">
 
-                    <div class="portfolio-item reveal" data-title="Taiwan Exhibition" data-desc="Songshan Cultural Park, Taipei" data-images='["images-optimized/portfolio/03-taiwan-exhibition/HQ_Taiwan2_Installationen-67.webp","images-optimized/portfolio/03-taiwan-exhibition/HQ_Taiwan2_Installationen-60.webp","images-optimized/portfolio/03-taiwan-exhibition/HQ_Taiwan2_Installationen-66.webp","images-optimized/portfolio/03-taiwan-exhibition/190712_LB_TT_Taiwan-38.webp","images-optimized/portfolio/03-taiwan-exhibition/190712_LB_TT_Taiwan-24.webp","images-optimized/portfolio/03-taiwan-exhibition/190708_LB_TT_Taiwan-16.webp","images-optimized/portfolio/03-taiwan-exhibition/190709_LB_TT_Taiwan-12.webp","images-optimized/portfolio/03-taiwan-exhibition/190709_LB_TT_Taiwan-14.webp","images-optimized/portfolio/03-taiwan-exhibition/1907_LB_TT_Taiwan_2nd%20draft-38.webp","images-optimized/portfolio/03-taiwan-exhibition/20190712_TAPE%20bearbeitet%202026.webp"]'>
+                    <div class="portfolio-item reveal" data-title="Taiwan Exhibition" data-desc="Songshan Cultural Park, Taipei" data-images='["images-optimized/portfolio/03-taiwan-exhibition/HQ_Taiwan2_Installationen-67.webp","images-optimized/portfolio/03-taiwan-exhibition/HQ_Taiwan2_Installationen-60.webp","images-optimized/portfolio/03-taiwan-exhibition/HQ_Taiwan2_Installationen-66.webp","images-optimized/portfolio/03-taiwan-exhibition/190712_LB_TT_Taiwan-38.webp","images-optimized/portfolio/03-taiwan-exhibition/190712_LB_TT_Taiwan-24.webp","images-optimized/portfolio/03-taiwan-exhibition/190708_LB_TT_Taiwan-16.webp","images-optimized/portfolio/03-taiwan-exhibition/190709_LB_TT_Taiwan-12.webp","images-optimized/portfolio/03-taiwan-exhibition/190709_LB_TT_Taiwan-14.webp","images-optimized/portfolio/03-taiwan-exhibition/1907_LB_TT_Taiwan_2nd%20draft-38.webp"]' data-credits='["","","","Laurenz Bostedt","Laurenz Bostedt","Laurenz Bostedt","Laurenz Bostedt","Laurenz Bostedt","Laurenz Bostedt"]'>
                         <img src="images-optimized/portfolio/03-taiwan-exhibition/HQ_Taiwan2_Installationen-67.webp" alt="Taiwan Exhibition — large-scale colorful tape installation, Songshan Cultural Park" loading="lazy">
                         <div class="overlay"><div class="overlay-text"><h3>Taiwan Exhibition</h3><p>Songshan Cultural Park, Taipei</p></div></div>
                     </div>
@@ -1317,9 +1326,9 @@
                         <div class="overlay"><div class="overlay-text"><h3>Illuseum Grid Room</h3><p>Immersive b/w grid</p></div></div>
                     </div>
 
-                    <div class="portfolio-item reveal" data-title="Artcarden" data-desc="Room-filling installation, Berlin" data-images='["images-optimized/portfolio/04-artcarden-installation/artcaden%20nachz(1)_totale.webp","images-optimized/portfolio/04-artcarden-installation/artcarden-58.webp","images-optimized/portfolio/04-artcarden-installation/tape_that_tape_art_camouflage_berlin_artcaden_exhibition-22.webp","images-optimized/portfolio/04-artcarden-installation/tape_that_tape_art_camouflage_berlin_artcaden_exhibition-24.webp","images-optimized/portfolio/04-artcarden-installation/Artcaden_2017 (175).webp"]'>
-                        <img src="images-optimized/portfolio/04-artcarden-installation/artcaden%20nachz(1)_totale.webp" alt="Artcarden — explosive colorful room-filling tape installation" loading="lazy">
-                        <div class="overlay"><div class="overlay-text"><h3>Artcarden</h3><p>Room installation, Berlin</p></div></div>
+                    <div class="portfolio-item reveal" data-title="Artcaden" data-desc="Room-filling installation, Berlin" data-images='["images-optimized/portfolio/04-artcarden-installation/artcaden%20nachz(1)_totale.webp","images-optimized/portfolio/04-artcarden-installation/artcarden-58.webp","images-optimized/portfolio/04-artcarden-installation/tape_that_tape_art_camouflage_berlin_artcaden_exhibition-22.webp","images-optimized/portfolio/04-artcarden-installation/tape_that_tape_art_camouflage_berlin_artcaden_exhibition-24.webp","images-optimized/portfolio/04-artcarden-installation/Artcaden_2017 (175).webp"]' data-credits='["Laurenz Bostedt","Laurenz Bostedt","Laurenz Bostedt","Laurenz Bostedt","Laurenz Bostedt"]'>
+                        <img src="images-optimized/portfolio/04-artcarden-installation/artcaden%20nachz(1)_totale.webp" alt="Artcaden — explosive colorful room-filling tape installation" loading="lazy">
+                        <div class="overlay"><div class="overlay-text"><h3>Artcaden</h3><p>Room installation, Berlin</p></div></div>
                     </div>
 
                     <div class="portfolio-item reveal" data-title="Sleek × Cadillac" data-desc="Art Car" data-images='["images-optimized/portfolio/05-sleek-cadillac/Cadillac_Sleek_PopUp_RAW_367_totale.webp","images-optimized/portfolio/05-sleek-cadillac/sleek_cadillac_print.webp","images-optimized/portfolio/05-sleek-cadillac/sleek_cadillac_print-2.webp","images-optimized/portfolio/05-sleek-cadillac/sleek_cadillac_print-3(1).webp","images-optimized/portfolio/05-sleek-cadillac/Cadillac_Sleek_PopUp_RAW_368.webp","images-optimized/portfolio/05-sleek-cadillac/Cadillac_Sleek_PopUp_RAW_369.webp"]'>
@@ -1327,7 +1336,7 @@
                         <div class="overlay"><div class="overlay-text"><h3>Sleek × Cadillac</h3><p>Art Car</p></div></div>
                     </div>
 
-                    <div class="portfolio-item reveal" data-title="Various" data-desc="Selected works" data-images='["images-optimized/portfolio/09-moebius-galerie/Möbius_totale_print-2.webp","images-optimized/portfolio/09-moebius-galerie/DSC00086.webp","images-optimized/portfolio/24-various/1810_lb_TapeThat_Festival_of_Lights-10(1).webp","images-optimized/portfolio/24-various/TAATW_USA_web-31.webp","images-optimized/portfolio/24-various/2018_Tape Art Around The World_Guatemala City(1).webp","images-optimized/portfolio/28-corridor-installation/DSCF1152.webp"]'>
+                    <div class="portfolio-item reveal" data-title="Various" data-desc="Selected works" data-images='["images-optimized/portfolio/09-moebius-galerie/Möbius_totale_print-2.webp","images-optimized/portfolio/09-moebius-galerie/DSC00086.webp","images-optimized/portfolio/24-various/1810_lb_TapeThat_Festival_of_Lights-10(1).webp","images-optimized/portfolio/24-various/TAATW_USA_web-31.webp","images-optimized/portfolio/24-various/2018_Tape Art Around The World_Guatemala City(1).webp","images-optimized/portfolio/28-corridor-installation/DSCF1152.webp"]' data-credits='["","","Laurenz Bostedt","","",""]'>
                         <img src="images-optimized/portfolio/24-various/TAATW_USA_web-31.webp" alt="Various — selected works from around the world" loading="lazy">
                         <div class="overlay"><div class="overlay-text"><h3>Various</h3><p data-en="Selected works" data-de="Ausgewählte Arbeiten">Selected works</p></div></div>
                     </div>
@@ -1362,7 +1371,7 @@
                         <div class="overlay"><div class="overlay-text"><h3>Trade Desk</h3><p>Corporate installation</p></div></div>
                     </div>
 
-                    <div class="portfolio-item reveal" data-title="Berlin Mural" data-desc="Large-scale mural" data-images='["images-optimized/portfolio/14-berlin-mural/1805_LB_TT_Berlin Mural_PRINT-16(2)_totale.webp","images-optimized/portfolio/14-berlin-mural/1805_LB_TT_Berlin Mural_PRINT-15.webp","images-optimized/portfolio/14-berlin-mural/1805_LB_Tape That_Berlin Mural Festival_PRINT-1.webp","images-optimized/portfolio/14-berlin-mural/Tape Art_Tape That_Berlin_Mural_Fest-7.webp"]'>
+                    <div class="portfolio-item reveal" data-title="Berlin Mural" data-desc="Large-scale mural" data-images='["images-optimized/portfolio/14-berlin-mural/1805_LB_TT_Berlin Mural_PRINT-16(2)_totale.webp","images-optimized/portfolio/14-berlin-mural/1805_LB_TT_Berlin Mural_PRINT-15.webp","images-optimized/portfolio/14-berlin-mural/1805_LB_Tape That_Berlin Mural Festival_PRINT-1.webp","images-optimized/portfolio/14-berlin-mural/Tape Art_Tape That_Berlin_Mural_Fest-7.webp"]' data-credits='["Laurenz Bostedt","Laurenz Bostedt","Laurenz Bostedt",""]'>
                         <img src="images-optimized/portfolio/14-berlin-mural/1805_LB_TT_Berlin%20Mural_PRINT-16(2)_totale.webp" alt="Berlin Mural — large-scale colorful tape art mural" loading="lazy">
                         <div class="overlay"><div class="overlay-text"><h3>Berlin Mural</h3><p>Large-scale, Berlin</p></div></div>
                     </div>
@@ -1372,7 +1381,7 @@
                         <div class="overlay"><div class="overlay-text"><h3>Parkhaus Mural</h3><p>Parking garage</p></div></div>
                     </div>
 
-                    <div class="portfolio-item reveal" data-title="Tape Art Convention" data-desc="International tape art exhibition, Berlin" data-images='["images-optimized/portfolio/15-tape-art-convention/Tape_Art_Convention_Tape_That_Berlin-3_totale.webp","images-optimized/portfolio/15-tape-art-convention/Tape_Art_Convention_Tape_That_Berlin.webp","images-optimized/portfolio/15-tape-art-convention/2018_Gefuehl_325x200cm_Stephan-Meissner.webp","images-optimized/portfolio/15-tape-art-convention/Tape Art Convention 2018_Artist_Stephan Meissner_photo by Laurenz H. Bostedt.webp"]'>
+                    <div class="portfolio-item reveal" data-title="Tape Art Convention" data-desc="International tape art exhibition, Berlin" data-images='["images-optimized/portfolio/15-tape-art-convention/Tape_Art_Convention_Tape_That_Berlin-3_totale.webp","images-optimized/portfolio/15-tape-art-convention/Tape_Art_Convention_Tape_That_Berlin.webp","images-optimized/portfolio/15-tape-art-convention/2018_Gefuehl_325x200cm_Stephan-Meissner.webp","images-optimized/portfolio/15-tape-art-convention/Tape Art Convention 2018_Artist_Stephan Meissner_photo by Laurenz H. Bostedt.webp"]' data-credits='["","","","Laurenz Bostedt"]'>
                         <img src="images-optimized/portfolio/15-tape-art-convention/Tape_Art_Convention_Tape_That_Berlin-3_totale.webp" alt="Tape Art Convention — international tape art exhibition, Berlin" loading="lazy">
                         <div class="overlay"><div class="overlay-text"><h3>Tape Art Convention</h3><p>International exhibition, Berlin</p></div></div>
                     </div>
@@ -1574,6 +1583,7 @@
             <div class="lightbox-info">
                 <h3 id="lightboxTitle"></h3>
                 <span class="lightbox-counter" id="lightboxCounter"></span>
+                <span class="lightbox-credit" id="lightboxCredit"></span>
             </div>
             <div class="thumbnail-strip" id="thumbnailStrip"></div>
         </div>
@@ -1765,8 +1775,10 @@
         const carouselTrack = document.getElementById('carouselTrack');
         const lbTitle = document.getElementById('lightboxTitle');
         const lbCounter = document.getElementById('lightboxCounter');
+        const lbCredit = document.getElementById('lightboxCredit');
         const thumbnailStrip = document.getElementById('thumbnailStrip');
         let ci = 0;
+        let currentCredits = [];
         let currentVisibleItems = [];
         let currentImages = [];
         let currentImageIndex = 0;
@@ -1787,6 +1799,7 @@
 
         function openLB(item) {
             try { currentImages = JSON.parse(item.dataset.images); } catch(e) { currentImages = [item.querySelector('img').src]; }
+            try { currentCredits = JSON.parse(item.dataset.credits || '[]'); } catch(e) { currentCredits = []; }
             currentImageIndex = 0;
             buildCarousel();
             lightbox.classList.add('active');
@@ -1838,9 +1851,11 @@
                 carouselTrack.classList.remove('no-transition');
             }
 
-            // Update title & counter
+            // Update title, counter & credit
             lbTitle.textContent = currentVisibleItems[ci]?.dataset.title || '';
             lbCounter.textContent = currentImages.length > 1 ? (currentImageIndex + 1) + ' / ' + currentImages.length : '';
+            const credit = currentCredits[currentImageIndex] || '';
+            lbCredit.textContent = credit ? 'Photo: ' + credit : '';
 
             // Update thumbnail active state
             const thumbs = thumbnailStrip.querySelectorAll('img');
@@ -1890,6 +1905,7 @@
                 ci = (ci - 1 + currentVisibleItems.length) % currentVisibleItems.length;
                 const item = currentVisibleItems[ci];
                 try { currentImages = JSON.parse(item.dataset.images); } catch(e) { currentImages = [item.querySelector('img').src]; }
+                try { currentCredits = JSON.parse(item.dataset.credits || '[]'); } catch(e) { currentCredits = []; }
                 currentImageIndex = currentImages.length - 1;
                 buildCarousel();
                 lightbox.classList.add('active');
