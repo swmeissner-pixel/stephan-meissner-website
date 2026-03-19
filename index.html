@@ -21,7 +21,7 @@
     <link rel="alternate" hreflang="en" href="https://www.stephan-meissner.com/">
     <link rel="alternate" hreflang="de" href="https://www.stephan-meissner.com/">
     <link rel="alternate" hreflang="x-default" href="https://www.stephan-meissner.com/">
-    <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Ccircle cx='50' cy='50' r='45' fill='none' stroke='%23222' stroke-width='18'/%3E%3Ccircle cx='50' cy='50' r='12' fill='%23222'/%3E%3C/svg%3E">
+    <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Crect x='5' y='35' width='90' height='30' rx='2' fill='%23222' transform='rotate(-12 50 50)'/%3E%3C/svg%3E">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700&family=DM+Sans:ital,wght@0,300;0,400;0,500;1,400&display=swap" rel="stylesheet">
@@ -617,20 +617,38 @@
             aspect-ratio: auto;
         }
 
+        /* Layout A: großes Bild links, 2 gestapelt rechts */
         .mosaic-a {
             grid-template-columns: 1fr 1fr;
             grid-template-rows: 1fr 1fr;
         }
         .mosaic-a img:first-child { grid-row: 1 / -1; }
 
+        /* Layout B: großes Bild rechts, 2 gestapelt links */
         .mosaic-b {
+            grid-template-columns: 1fr 1fr;
+            grid-template-rows: 1fr 1fr;
+        }
+        .mosaic-b img:last-child { grid-row: 1 / -1; grid-column: 2; }
+        .mosaic-b img:first-child { grid-column: 1; grid-row: 1; }
+        .mosaic-b img:nth-child(2) { grid-column: 1; grid-row: 2; }
+
+        /* Layout C: 3 vertikale Spalten */
+        .mosaic-c {
             grid-template-columns: 1fr 1fr 1fr;
             grid-template-rows: 1fr;
         }
 
-        .mosaic-c {
-            grid-template-columns: 1fr;
-            grid-template-rows: 1fr 1fr 1fr;
+        /* Layout D: breite Mitte, schmale Seiten */
+        .mosaic-d {
+            grid-template-columns: 1fr 2fr 1fr;
+            grid-template-rows: 1fr;
+        }
+
+        /* Layout E: breite linke Spalte */
+        .mosaic-e {
+            grid-template-columns: 2fr 1fr 1fr;
+            grid-template-rows: 1fr;
         }
 
         /* ========== ABOUT + TIMELINE/CONTACT (combined) ========== */
@@ -1699,7 +1717,6 @@
             mosaic.className = 'hover-mosaic';
             for (let i = 0; i < 3; i++) {
                 const img = document.createElement('img');
-                img.src = encodeURI(decodeURI(images[i]));
                 img.alt = '';
                 img.loading = 'lazy';
                 mosaic.appendChild(img);
@@ -1707,9 +1724,13 @@
             item.appendChild(mosaic);
 
             item.addEventListener('mouseenter', () => {
-                const layouts = ['mosaic-a', 'mosaic-b', 'mosaic-c'];
-                mosaic.classList.remove('mosaic-a', 'mosaic-b', 'mosaic-c');
-                mosaic.classList.add(layouts[Math.floor(Math.random() * 3)]);
+                const layouts = ['mosaic-a', 'mosaic-b', 'mosaic-c', 'mosaic-d', 'mosaic-e'];
+                mosaic.classList.remove(...layouts);
+                mosaic.classList.add(layouts[Math.floor(Math.random() * layouts.length)]);
+                // Zufällige Bildreihenfolge (3 aus allen Bildern)
+                const shuffled = [...images].sort(() => Math.random() - 0.5);
+                const mosaicImgs = mosaic.querySelectorAll('img');
+                mosaicImgs.forEach((img, i) => { img.src = encodeURI(decodeURI(shuffled[i])); });
             });
         });
 
